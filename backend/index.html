@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BESTI Disdukcapil</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f3f4f6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .chat-container {
+      width: 420px;
+      height: 700px;
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header {
+      background: #1d4ed8;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .chat-box {
+      flex: 1;
+      padding: 15px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      background: #f9fafb;
+    }
+
+    .message {
+      max-width: 80%;
+      padding: 12px 14px;
+      border-radius: 15px;
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    .bot {
+      background: #e5e7eb;
+      align-self: flex-start;
+    }
+
+    .bot ul {
+      padding-left: 18px;
+      margin-top: 6px;
+    }
+
+    .bot ul li {
+      margin-bottom: 4px;
+    }
+
+    .bot ol {
+      padding-left: 20px;
+      margin-top: 8px;
+    }
+
+    .bot ol li {
+      margin-bottom: 6px;
+      line-height: 1.5;
+    }
+
+    .bot details {
+      margin-top: 10px;
+      border-top: 1px dashed #9ca3af;
+      padding-top: 8px;
+    }
+
+    .bot details summary {
+      cursor: pointer;
+      color: #1d4ed8;
+      font-weight: bold;
+      font-size: 13px;
+      user-select: none;
+      list-style: none;
+    }
+
+    .bot details summary::-webkit-details-marker { display: none; }
+
+    .bot details summary::before {
+      content: '▶ ';
+      font-size: 11px;
+    }
+
+    .bot details[open] summary::before {
+      content: '▼ ';
+    }
+
+    .user {
+      background: #1d4ed8;
+      color: white;
+      align-self: flex-end;
+    }
+
+    /* ── TYPING INDICATOR ── */
+    .typing-indicator {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: #e5e7eb;
+      align-self: flex-start;
+      padding: 12px 16px;
+      border-radius: 15px;
+      /* sembunyikan secara default */
+      display: none;
+    }
+
+    .typing-indicator.visible {
+      display: flex;
+    }
+
+    .typing-indicator span {
+      width: 8px;
+      height: 8px;
+      background: #6b7280;
+      border-radius: 50%;
+      animation: bounce 1.2s infinite ease-in-out;
+    }
+
+    .typing-indicator span:nth-child(1) { animation-delay: 0s; }
+    .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+    .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes bounce {
+      0%, 60%, 100% { transform: translateY(0); }
+      30%           { transform: translateY(-6px); }
+    }
+
+    /* ── TYPEWRITER CURSOR ── */
+    .cursor {
+      display: inline-block;
+      width: 2px;
+      height: 14px;
+      background: #374151;
+      margin-left: 2px;
+      vertical-align: middle;
+      animation: blink 0.7s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0; }
+    }
+
+    .quick-questions {
+      padding: 10px;
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      background: white;
+      border-top: 1px solid #e5e7eb;
+    }
+
+    .quick-btn {
+      background: #dbeafe;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      white-space: nowrap;
+      font-size: 13px;
+      transition: background 0.2s;
+    }
+
+    .quick-btn:hover {
+      background: #bfdbfe;
+    }
+
+    .input-area {
+      display: flex;
+      padding: 15px;
+      gap: 10px;
+      background: white;
+      border-top: 1px solid #e5e7eb;
+    }
+
+    .input-area input {
+      flex: 1;
+      padding: 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 12px;
+      outline: none;
+      font-size: 14px;
+    }
+
+    .input-area input:focus {
+      border-color: #1d4ed8;
+    }
+
+    .input-area button {
+      background: #1d4ed8;
+      color: white;
+      border: none;
+      padding: 12px 18px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background 0.2s;
+    }
+
+    .input-area button:hover  { background: #1e40af; }
+    .input-area button:disabled { background: #93c5fd; cursor: not-allowed; }
+
+    .survey-popup {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .survey-content {
+      background: white;
+      width: 400px;
+      padding: 20px;
+      border-radius: 20px;
+      text-align: center;
+    }
+
+    .survey-buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .survey-buttons button {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .continue-btn { background: #1d4ed8; color: white; }
+    .finish-btn   { background: #ef4444; color: white; }
+  </style>
+</head>
+
+<body>
+
+<div class="chat-container">
+
+  <div class="header">
+    <h2>CHATBOT Disdukcapil</h2>
+    <p>Layanan Informasi 24 jam Disdukcapil Kota Semarang</p>
+  </div>
+
+  <div class="chat-box" id="chatBox">
+
+    <div class="message bot">
+      👋 Halo! Selamat datang di CHATBOT Disdukcapil Kota Semarang.<br><br>
+      Saya siap membantu informasi:
+      <ul>
+        <li>Pembuatan KTP</li>
+        <li>Kartu Keluarga</li>
+        <li>Akta Kelahiran</li>
+        <li>Perubahan Data</li>
+        <li>Akta Kematian</li>
+        <li>Akta Perkawinan & Akta Perceraian bagi Non Muslim</li>
+        <li>Kartu Identitas Anak</li>
+        <li>Perpindahan Keluar</li>
+        <li>Kedatangan</li>
+        <li>Surat-Surat Pernyataan</li>
+        <li>Informasi Umum</li>
+      </ul>
+      Kamu bisa memulai dengan Pertanyaan Cepat dibawah Atau ketik apa yang mau kamu tanyakan ya.
+    </div>
+
+    <!-- Typing indicator selalu ada di DOM, disembunyikan secara default -->
+    <div class="typing-indicator" id="typingIndicator">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+  </div>
+
+  <div class="quick-questions">
+    <button class="quick-btn" onclick="sendQuickQuestion('Cara membuat KTP baru')">KTP Baru</button>
+    <button class="quick-btn" onclick="sendQuickQuestion('Syarat membuat KK')">Kartu Keluarga</button>
+    <button class="quick-btn" onclick="sendQuickQuestion('Cara membuat akta kelahiran')">Akta Kelahiran</button>
+    <button class="quick-btn" onclick="sendQuickQuestion('Cara membuat akta kematian')">Akta Kematian</button>
+  </div>
+
+  <div class="input-area">
+    <input type="text" id="userInput" placeholder="Tulis pertanyaan...">
+    <button id="sendBtn" onclick="sendMessage()">Kirim</button>
+  </div>
+
+</div>
+
+<!-- POPUP SURVEI -->
+<div class="survey-popup" id="surveyPopup">
+  <div class="survey-content">
+    <h3>Apakah Anda ingin melanjutkan percakapan?</h3>
+    <p>Jika tidak, silakan isi survei kepuasan pengguna berikut.</p>
+    <div class="survey-buttons">
+      <button class="continue-btn" onclick="continueChat()">Lanjut Chat</button>
+      <button class="finish-btn"   onclick="showSurvey()">Isi Survei</button>
+    </div>
+    <div id="surveySection" style="display:none; margin-top:20px;">
+      <iframe
+        src="https://docs.google.com/forms/d/e/1FAIpQLScVNwE8e9T8YGgPuqI024Y3Lg2TgfCxsAC-m3JoaLoqHR7Yiw/viewform?embedded=true"
+        width="100%" height="400" frameborder="0">Loading…</iframe>
+    </div>
+  </div>
+</div>
+
+<script>
+  const chatBox        = document.getElementById('chatBox');
+  const userInput      = document.getElementById('userInput');
+  const sendBtn        = document.getElementById('sendBtn');
+  const surveyPopup    = document.getElementById('surveyPopup');
+  const surveySection  = document.getElementById('surveySection');
+  const typingIndicator = document.getElementById('typingIndicator');
+
+  let inactivityTimer;
+
+  // ── Inactivity timer ──────────────────────────────────────
+  function resetTimer() {
+    clearTimeout(inactivityTimer);
+    inactivityTimer = setTimeout(() => {
+      surveyPopup.style.display = 'flex';
+    }, 35000);
+  }
+
+  resetTimer();
+  document.addEventListener('click',    resetTimer);
+  document.addEventListener('keypress', resetTimer);
+
+  // ── Tampilkan / sembunyikan typing indicator ──────────────
+  function showTyping() {
+    typingIndicator.classList.add('visible');
+    // Pastikan indicator selalu di posisi paling bawah
+    chatBox.appendChild(typingIndicator);
+    chatBox.scrollTop = chatBox.scrollHeight;
+  }
+
+  function hideTyping() {
+    typingIndicator.classList.remove('visible');
+  }
+
+  // ── Tambah pesan user (langsung tampil) ───────────────────
+  function addUserMessage(text) {
+    const div = document.createElement('div');
+    div.classList.add('message', 'user');
+    div.textContent = text;
+    chatBox.insertBefore(div, typingIndicator);
+    chatBox.scrollTop = chatBox.scrollHeight;
+  }
+
+  // ── Efek mengetik per node — sadar struktur HTML ─────────
+  // Cara kerja:
+  //   1. Parse HTML → ambil semua child node (teks, <b>, <ul>, <i>, dll)
+  //   2. Tiap node ditambahkan ke bubble satu per satu
+  //   3. Node teks → diketik karakter per karakter (typewriter)
+  //   4. Node elemen (<ul>, <b>, <i>) → langsung muncul utuh
+  //      tapi isi teksnya tetap diketik karakter per karakter
+  // Hasilnya: kalimat pembuka diketik, lalu list muncul item per item
+  // dengan teks tiap item juga diketik — persis seperti chat nyata.
+
+  const TYPING_SPEED = 18; // ms per karakter — turunkan untuk lebih cepat
+
+  function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  // Ketik teks karakter per karakter ke dalam node target
+  function typeText(targetNode, text) {
+    return new Promise(resolve => {
+      let i = 0;
+      const interval = setInterval(() => {
+        if (i < text.length) {
+          targetNode.textContent += text[i];
+          i++;
+          chatBox.scrollTop = chatBox.scrollHeight;
+        } else {
+          clearInterval(interval);
+          resolve();
+        }
+      }, TYPING_SPEED);
+    });
+  }
+
+  // Rekursif: ketik semua child node dalam sebuah elemen
+  async function typeChildren(sourceEl, targetEl) {
+    for (const node of sourceEl.childNodes) {
+
+      if (node.nodeType === Node.TEXT_NODE) {
+        // Node teks biasa → ketik karakter per karakter
+        const textNode = document.createTextNode('');
+        targetEl.appendChild(textNode);
+        await typeText(textNode, node.textContent);
+
+      } else if (node.nodeName === 'BR') {
+        // Line break → langsung tambahkan
+        targetEl.appendChild(document.createElement('br'));
+        await delay(80);
+
+      } else if (node.nodeName === 'UL' || node.nodeName === 'OL') {
+        // List UL / OL → buat elemen, isi item satu per satu
+        const list = document.createElement(node.nodeName);
+        if (node.getAttribute('style')) list.setAttribute('style', node.getAttribute('style'));
+        targetEl.appendChild(list);
+
+        for (const li of node.childNodes) {
+          if (li.nodeName !== 'LI') continue;
+          const newLi = document.createElement('li');
+          list.appendChild(newLi);
+          await typeChildren(li, newLi);
+          await delay(100);
+        }
+
+      } else if (node.nodeName === 'DETAILS') {
+        // Accordion — render langsung supaya buka/tutup tetap bekerja
+        const details = document.createElement('details');
+        if (node.getAttribute('style')) details.setAttribute('style', node.getAttribute('style'));
+        details.style.marginTop = '8px';
+        targetEl.appendChild(details);
+        details.innerHTML = node.innerHTML;
+
+      } else if (node.nodeName === 'SUMMARY') {
+        const summary = document.createElement('summary');
+        if (node.getAttribute('style')) summary.setAttribute('style', node.getAttribute('style'));
+        targetEl.appendChild(summary);
+        await typeChildren(node, summary);
+
+      } else if (node.nodeName === 'A') {
+        // Link → buat <a> dengan href & target, lalu ketik teksnya
+        const a = document.createElement('a');
+        a.href   = node.getAttribute('href') || '#';
+        a.target = node.getAttribute('target') || '_blank';
+        a.rel    = 'noopener noreferrer';
+        a.style.color = '#1d4ed8';
+        targetEl.appendChild(a);
+        await typeText(a, node.textContent);
+
+      } else {
+        // Elemen lain (<b>, <i>, <span>, dll)
+        // → buat elemen kosong, ketik teks di dalamnya
+        const clone = document.createElement(node.nodeName);
+        // Salin atribut jika ada
+        for (const attr of node.attributes || []) {
+          clone.setAttribute(attr.name, attr.value);
+        }
+        targetEl.appendChild(clone);
+        await typeChildren(node, clone);
+      }
+
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+  }
+
+  async function addBotMessageTyping(htmlText) {
+    // Buat bubble pesan kosong
+    const bubble = document.createElement('div');
+    bubble.classList.add('message', 'bot');
+    chatBox.insertBefore(bubble, typingIndicator);
+
+    // Parse HTML ke elemen sementara
+    const temp = document.createElement('div');
+    temp.innerHTML = htmlText;
+
+    // Ketik node per node dengan sadar struktur HTML
+    await typeChildren(temp, bubble);
+
+    chatBox.scrollTop = chatBox.scrollHeight;
+  }
+
+  // ── Kirim pesan ke backend ────────────────────────────────
+  async function sendMessage() {
+    const message = userInput.value.trim();
+
+    if (message === '') {
+      alert('Pertanyaan tidak boleh kosong');
+      return;
+    }
+
+    // Tambah pesan user
+    addUserMessage(message);
+    userInput.value = '';
+
+    // Nonaktifkan input saat menunggu
+    userInput.disabled = true;
+    sendBtn.disabled   = true;
+
+    // Tampilkan animasi mengetik (jeda 600ms biar terasa natural)
+    showTyping();
+    await delay(600);
+
+    try {
+      const response = await fetch('http://127.0.0.1:8000/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ question: message })
+      });
+
+      const data = await response.json();
+
+      // Sembunyikan typing indicator, lalu tampilkan efek mengetik
+      hideTyping();
+      await addBotMessageTyping(data.answer);
+
+    } catch (error) {
+      hideTyping();
+      await addBotMessageTyping('❌ Gagal terhubung ke server. Pastikan backend berjalan.');
+    }
+
+    // Aktifkan kembali input
+    userInput.disabled = false;
+    sendBtn.disabled   = false;
+    userInput.focus();
+
+    resetTimer();
+  }
+
+  // ── Tombol cepat ──────────────────────────────────────────
+  function sendQuickQuestion(question) {
+    userInput.value = question;
+    sendMessage();
+  }
+
+  // ── Survei ────────────────────────────────────────────────
+  function continueChat() {
+    surveyPopup.style.display = 'none';
+    surveySection.style.display = 'none';
+    resetTimer();
+  }
+
+  function showSurvey() {
+    surveySection.style.display = 'block';
+  }
+
+  // ── Enter untuk kirim ─────────────────────────────────────
+  userInput.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter' && !sendBtn.disabled) {
+      sendMessage();
+    }
+  });
+</script>
+
+</body>
+</html>
