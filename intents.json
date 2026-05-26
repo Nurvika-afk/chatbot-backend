@@ -1,0 +1,846 @@
+{
+  "metadata": {
+    "version": "2.0",
+    "description": "FAQ Chatbot BESTI Disdukcapil Kota Semarang",
+    "last_updated": "2025-01-01",
+    "total_categories": 10,
+    "categories": [
+      "ktp",
+      "kartu_keluarga",
+      "akta_kelahiran",
+      "informasi_umum",
+      "perpindahan_keluar",
+      "kedatangan",
+      "perubahan_biodata_kk",
+      "kia",
+      "akta_nikah_cerai_non_muslim",
+      "akta_kematian",
+      "surat_pernyataan"
+    ]
+  },
+
+  "data": [
+
+    {
+      "id": "KTP-001",
+      "category": "ktp",
+      "subcategory": "perekaman_baru",
+      "keywords": ["ktp", "ktp-el", "kartu tanda penduduk", "rekam", "baru", "pertama"],
+      "questions": [
+        "cara membuat ktp baru",
+        "syarat buat ktp baru",
+        "mau bikin ktp pertama kali",
+        "cara perekaman ktp el",
+        "persyaratan ktp baru",
+        "ktp baru buat pemula",
+        "umur berapa bisa buat ktp"
+      ],
+      "answer": {
+        "text": "Untuk perekaman KTP-el baru bagi WNI, persyaratannya adalah sebagai berikut:",
+        "list": [
+          " Berusia minimal 17 tahun atau sudah menikah",
+          " Kartu Keluarga (KK) terbaru",
+          " Kutipan  kelahiran"
+        ],
+        "note": "Pemohon datang langsung ke Unit Layanan Adminduk Terdekat atau Kantor Disdukcapil Kota Semarang, Proses cetak KTP-el bisa dilakukan sehari setelah perekaman data."
+      }
+    },
+
+    {
+      "id": "KTP-002",
+      "category": "ktp",
+      "subcategory": "ktp_hilang_rusak",
+      "keywords": ["ktp", "hilang", "rusak", "ganti", "pengganti"],
+      "questions": [
+        "ktp saya hilang gimana",
+        "cara mengurus ktp hilang",
+        "ktp rusak minta ganti",
+        "syarat ganti ktp hilang",
+        "ktp hilang harus kemana"
+      ],
+      "answer": {
+        "text": "Untuk mengurus KTP hilang atau rusak, siapkan dokumen berikut:",
+        "list": [
+          " Surat kehilangan dari Kepolisian (jika hilang)",
+          " KTP lama (jika rusak)",
+          " Kartu Keluarga (KK) terbaru"
+        ],
+        "note": "Pengurusan dilakukan di Unit Layanan Adminduk terdekat atau Kantor Didukcapil Kota Semarang."
+      }
+    },
+
+    {
+      "id": "KK-001",
+      "category": "kartu_keluarga",
+      "subcategory": "membuat_kk_baru",
+      "keywords": ["kk", "kartu keluarga", "baru", "buat", "membuat", "nikah", "setelah menikah"],
+      "questions": [
+        "cara membuat kk baru",
+        "syarat membuat kartu keluarga baru",
+        "buat kk baru setelah menikah",
+        "persyaratan kartu keluarga baru",
+        "dokumen untuk buat kk"
+      ],
+      "answer": {
+        "text": "Persyaratan membuat Kartu Keluarga (KK) baru setelah menikah:",
+        "list": [
+          "Buku nikah halaman lengkap /  perkawinan",
+          "Surat keterangan pindah atau SKPWNI (jika pindah domisili dari luar kota semarang)",
+          "KTP suami dan istri",
+          "<a href='https://sidnok.semarangkota.go.id/get-berkas/1712130972' target='_blank'>Surat Pernyataan Perubahan Elemen Data Kependudukan</a> (Apabila ada perubahan elemen data pada KK)",
+          "<a href='https://sidnok.semarangkota.go.id/get-berkas/1740727423' target='_blank'>Surat Pernyataan Alamat Digunakan dalam Administrasi Kependudukan</a> (Apabila kontrak)",
+          "<a href='https://sidnok.semarangkota.go.id/get-berkas/1740727896' target='_blank'>Surat Pernyataan Menggunakan Alamat Rumah Sendiri</a>(Apabila rumah sendiri)",
+          "<a href='https://sidnok.semarangkota.go.id/get-berkas/1740727518' target='_blank'>Surat Pernyatan Tidak Keberatan Numpang KK</a> (Apabila numpang KK)",
+          "Data dukung seperti ijazah terakhir/ SK pekerjaan/ Surat keterangan golongan darah dll (apabila ada perubahan elemen data kependudukan)"
+        ],
+        "note": " Jika KK sudah jadi pemohon wajib ke kantor Dinas/ Unit layanan Adminduk terdekat untuk cetak KTP baru ",
+
+        "sub_prosedur": [
+      {
+        "judul": "Menikah, Kedua Pasangan Dari Luar Kota Semarang",
+        "langkah": [
+          "Buka Website <a href='https://sidnok.semarangkota.go.id/' target='_blank'>Si D'nOK</a>","atau Download <a href='https://play.google.com/store/apps/details?id=semarangkota.sidnok&pcampaignid=web_share' target='_blank'>Aplikasi Si D'nOK</a>",
+          "Resgistrasi akun (apabila belum memiliki akun)",
+          "Login dengan NIK dan Password yg dikirim diemail atau password yg telah diganti mandiri",
+          "Pilih menu KEDATANGAN menggunakan akun SALAH SATU PASANGAN",
+          "Unggah dokumen persyaratan, dokumen yang diunggah harus dokumen asli (dengan jelas agar tidak tertolak)",
+          "Kirim pengajuan",
+          "Simpan kode pelayanan untuk memantau status pengajuan atau pantau status pengajuan melalui fitur pengajuan",
+          "Jika status PENGAJUAN DITOLAK maka perbaiki pengajuan dengan klik tombol revisi pada fitur pengajuan dan tambahkan dokumen atau data yang direvisi sesuai dengan keterangan penolakan",
+          "Jika status sudah SIAP DIAMBIL KK  diterbitkan secara digital melalui email untuk dicetak secara mandiri atau dicetak Disdukcapil terdekat"
+        ]
+      },
+      {
+        "judul": "Menikah, Salah Satu Pasangan Dari Luar Kota Semarang, Dan Pasangan Asal Kota Semarang Tidak Pindah",
+        "langkah": [
+          "Buka Website <a href='https://sidnok.semarangkota.go.id/' target='_blank'>Si D'nOK</a>","atau Download <a href='https://play.google.com/store/apps/details?id=semarangkota.sidnok&pcampaignid=web_share' target='_blank'>Aplikasi Si D'nOK</a>",
+          "Resgistrasi akun (apabila belum memiliki akun)",
+          "Login dengan NIK dan Password yg dikirim diemail atau password yg telah diganti mandiri",
+          "Pilih menu KEDATANGAN menggunakan akun PASANGAN YANG PINDAH KE KOTA SEMARANG",
+          "Unggah dokumen persyaratan, dokumen yang diunggah harus dokumen asli (dengan jelas agar tidak tertolak)",
+          "Kirim pengajuan",
+          "Simpan kode pelayanan untuk memantau status pengajuan atau pantau status pengajuan melalui fitur pengajuan",
+          "Jika status PENGAJUAN DITOLAK maka perbaiki pengajuan dengan klik tombol revisi pada fitur pengajuan dan tambahkan dokumen atau data yang direvisi sesuai dengan keterangan penolakan",
+          "Jika status sudah SIAP DIAMBIL KK  diterbitkan secara digital melalui email untuk dicetak secara mandiri atau dicetak Disdukcapil terdekat"
+        ]
+      },
+      {
+        "judul": "Menikah, Salah Satu Pasangan Dari Luar Kota Semarang, Dan Pasangan Asal Kota Semarang Pindah Antar Kecamatan dalam Kota Semarang",
+        "langkah":[
+          "Buka Website <a href='https://sidnok.semarangkota.go.id/' target='_blank'>Si D'nOK</a>","atau Download <a href='https://play.google.com/store/apps/details?id=semarangkota.sidnok&pcampaignid=web_share' target='_blank'>Aplikasi Si D'nOK</a>",
+          "Resgistrasi akun (apabila belum memiliki akun)",
+          "Login dengan NIK dan Password yg dikirim diemail atau password yg telah diganti mandiri",
+          "Pilih menu PERPINDAHAN KELUAR menggunakan akun PASANGAN ASAL KOTA SEMARANG",
+          "Unggah dokumen persyaratan, dokumen yang diunggah harus dokumen asli (dengan jelas agar tidak tertolak)",
+          "Kirim pengajuan",
+          "Simpan kode pelayanan untuk memantau status pengajuan atau pantau status pengajuan melalui fitur pengajuan",
+          "Jika status PENGAJUAN DITOLAK maka perbaiki pengajuan dengan klik tombol revisi pada fitur pengajuan dan tambahkan dokumen atau data yang direvisi sesuai dengan keterangan penolakan",
+          "Jika status sudah SIAP DIAMBIL KK  diterbitkan secara digital melalui email untuk dicetak secara mandiri atau dicetak Disdukcapil terdekat"
+        ]
+      },
+      {
+        "judul": "Menikah, Kedua Pasangan Dari Kota Semarang, Dan Kedua Pasangan Pindah Ke Luar Kota Semarang",
+        "langkah":[
+          "Buka Website <a href='https://sidnok.semarangkota.go.id/' target='_blank'>Si D'nOK</a>","atau Download <a href='https://play.google.com/store/apps/details?id=semarangkota.sidnok&pcampaignid=web_share' target='_blank'>Aplikasi Si D'nOK</a>",
+          "Resgistrasi akun (apabila belum memiliki akun)",
+          "Login dengan NIK dan Password yg dikirim diemail atau password yg telah diganti mandiri",
+          "Pilih menu PERPINDAHAN KELUAR menggunakan akun MASING-MASING PASANGAN",
+          "Unggah dokumen persyaratan, dokumen yang diunggah harus dokumen asli (dengan jelas agar tidak tertolak)",
+          "Kirim pengajuan",
+          "Simpan kode pelayanan untuk memantau status pengajuan atau pantau status pengajuan melalui fitur pengajuan",
+          "Jika status PENGAJUAN DITOLAK maka perbaiki pengajuan dengan klik tombol revisi pada fitur pengajuan dan tambahkan dokumen atau data yang direvisi sesuai dengan keterangan penolakan",
+          "Jika status sudah SIAP DIAMBIL KK  diterbitkan secara digital melalui email untuk dicetak secara mandiri atau dicetak Disdukcapil terdekat"
+        ]
+      },
+      {
+        "judul": "Menikah, Kedua Pasangan Dari Kota Semarang, Dan Salah Satu Pasangan Pindah Dari Alamat KK Saat Ini",
+        "langkah":[
+          "Buka Website <a href='https://sidnok.semarangkota.go.id/' target='_blank'>Si D'nOK</a>","atau Download <a href='https://play.google.com/store/apps/details?id=semarangkota.sidnok&pcampaignid=web_share' target='_blank'>Aplikasi Si D'nOK</a>",
+          "Resgistrasi akun (apabila belum memiliki akun)",
+          "Login dengan NIK dan Password yg dikirim diemail atau password yg telah diganti mandiri",
+          "Pilih menu PERPINDAHAN KELUAR menggunakan akun PASANGAN YANG PINDAH",
+          "Unggah dokumen persyaratan, dokumen yang diunggah harus dokumen asli (dengan jelas agar tidak tertolak)",
+          "Kirim pengajuan",
+          "Simpan kode pelayanan untuk memantau status pengajuan atau pantau status pengajuan melalui fitur pengajuan",
+          "Jika status PENGAJUAN DITOLAK maka perbaiki pengajuan dengan klik tombol revisi pada fitur pengajuan dan tambahkan dokumen atau data yang direvisi sesuai dengan keterangan penolakan",
+          "Jika status sudah SIAP DIAMBIL KK  diterbitkan secara digital melalui email untuk dicetak secara mandiri atau dicetak Disdukcapil terdekat",
+          "NOTE : digunakan misalnya pada kasus istri ikut ke alamat suami atau suami ikut ke alamat istri."
+        ]
+      }
+    ]
+  }
+    },
+
+    {
+      "id": "AKTA-001",
+      "category": "akta_kelahiran",
+      "subcategory": "membuat_akta",
+      "keywords": ["kelahiran", "lahir", "bayi", "anak", "baru lahir", " lahir", " kelahiran"],
+      "questions": [
+        "cara membuat  kelahiran",
+        "syarat buat  kelahiran bayi",
+        "dokumen untuk  kelahiran",
+        " kelahiran anak baru lahir",
+        "cara daftar  lahir",
+        "persyaratan  kelahiran"
+      ],
+      "answer": {
+        "text": "Persyaratan membuat Akta Kelahiran:",
+        "list": [
+          "Surat keterangan lahir dari rumah sakit / bidan",
+          "KK dan KTP orang tua",
+          "Buku nikah semua halaman / akta perkawinan orang tua",
+          "<a href='https://sidnok.semarangkota.go.id/get-berkas/1656899722' target='_blank'>Surat Pernyataan Anak Ibu</a> (Apabila anak lahir diluar nikah)",
+          "<a href='https://sidnok.semarangkota.go.id/get-berkas/1656900691' target='_blank'>SPTJM</a> (Apabila tidak memiliki surat keterangan kelahiran)"
+        ],
+        "prosedur": [
+          " Buka Website <a href='https://sidnok.semarangkota.go.id/' target='_blank'>Si D'nOK</a>","atau Download <a href='https://play.google.com/store/apps/details?id=semarangkota.sidnok&pcampaignid=web_share' target='_blank'>Aplikasi Si D'nOK</a>",
+          " Resgistrasi akun menggunakan NIK, No KK, No hp Aktif, Email aktif, nama lengkap sesuai ktp (apabila belum memiliki akun)",
+          " Login dengan NIK dan Password yg dikirim diemail atau password yg telah diganti mandiri",
+          " Pilih menu AKTA KELAHIRAN",
+          " Isi semua data yang diminta dan ikuti alurnya pastikan data yang dimasukkan benar dan sesuai",
+          " Unggah dokumen persyaratan, dokumen yang diunggah harus dokumen asli (dengan jelas agar tidak tertolak)",
+          " Kirim pengajuan",
+          " Simpan kode pelayanan untuk memantau status pengajuan atau pantau status pengajuan melalui fitur pengajuan",
+          " Jika status PENGAJUAN DITOLAK maka perbaiki pengajuan dengan klik tombol revisi pada fitur pengajuan dan tambahkan dokumen atau data yang direvisi sesuai dengan keterangan penolakan",
+          " Jika status sudah SIAP AMBIL, Akta Kelahiran dan KIA diterbitkan secara digital (barcode) dikirim melalui email"
+        ],
+        "note": "Akta kelahiran anak gratis dan KIA hanya dapat dicetak di Kantor Disdukcapil atau Unit layanan terdekat dengan menunjukkan barcode."
+      }
+    },
+
+    {
+      "id": "INFO-001",
+      "category": "informasi_umum",
+      "subcategory": "jam_operasional",
+      "keywords": ["jam", "buka", "tutup", "operasional", "kantor", "hari", "pelayanan"],
+      "questions": [
+        "jam buka disdukcapil semarang",
+        "jam pelayanan disdukcapil",
+        "disdukcapil buka jam berapa",
+        "hari apa disdukcapil buka",
+        "jam operasional kantor dukcapil"
+      ],
+      "answer": {
+        "text": "Jam operasional Disdukcapil Kota Semarang:",
+        "list": [
+          "Senin - Kamis: 08.00 - 16.00 WIB",
+          "Jumat: 08.00 - 11.00 WIB",
+          "Sabtu & Minggu: Tutup"
+        ],
+        "note": "Pelayanan online tersedia 24 jam melalui <a href='https://sidnok.semarangkota.go.id/' target='_blank'>Si D'nOK</a>, atau Download <a href='https://play.google.com/store/apps/details?id=semarangkota.sidnok&pcampaignid=web_share' target='_blank'>Aplikasi Si D'nOK</a>"
+      }
+    },
+    {
+      "id": "INFO-002",
+      "category": "informasi_umum",
+      "subcategory": "unit_layanann",
+      "keywords": ["unit layanan", "buka", "kecamatan", "dimana", "kantor", "pelayanan", "lokasi"],
+      "questions": [
+        "tempat unit layanan adminduk",
+        "dimana unit layanan adminduk terdekat",
+        "kecamatan mana yang ada unit layanan adminduk",
+        "lokasi kantor disdukcapil",
+        "lokasi unit layanan"
+      ],
+      "answer": {
+        "text": "Berikut Lokasi Kantor Disdukcapil Kota Semarang dan Lokasi Beberapa Unit Layanan Adminduk Kota Semarang:",
+        "list": [
+          " <a href='https://maps.app.goo.gl/iKHtxaHuCvaV3fd58' target ='_blank'>Kantor Disdukcapil Kota Semarang</a>",
+          " <a href='https://maps.app.goo.gl/cTfFQPkhyZzreT5UA' target ='_blank'>Unit Layanan Ngaliyan</a>",
+          " <a href='https://maps.app.goo.gl/3Z6Wxf2KqWZ2Zkyq8' target ='_blank'>Unit Layanan Genuk</a>",
+          " <a href='https://maps.app.goo.gl/ECUoUFsmSdHjDHyGA' target ='_blank'>Unit Layanan Banyumanik</a>",
+          " <a href='https://maps.app.goo.gl/mrND1ZqtvxZESJT7A' target ='_blank'>Unit Layanan Semarang Timur</a>",
+          " <a href='https://maps.app.goo.gl/F9RmS3vVCqoW3pmz7' target ='_blank'>Unit Layanan Gunungpati</a>",
+          " <a href='https://maps.app.goo.gl/hjurJxDjELsysibCA' terget ='_blank'>Unit Layanan Semarang Selatan</a>",
+          " <a href='https://maps.app.goo.gl/YXPiMzTh9CCbUMhu9' target ='_blank'>Unit Layanan Candisari</a>",
+          " <a href='https://maps.app.goo.gl/6sirqqJFtrzo8yFS9' target ='_blank'>Unit Layanan Semarang Barat</a>",
+          " <a href='https://maps.app.goo.gl/9vsq42cP4DnJaTxS8' target ='_blank'>Unit layanan Pedurungan</a>",
+          " <a href='https://maps.app.goo.gl/Bqc98a6BYkzpbAvx5' target ='_blank'>Unit Layanan Semarang Utara</a>"
+        ],
+        "note": "Untuk melihat lokasi Diklik dulu ya nanti diarahkan ke Maps nya langsung. <br>Pelayanan online tersedia 24 jam melalui <a href='https://sidnok.semarangkota.go.id/' target='_blank'>Si D'nOK</a>, atau Download <a href='https://play.google.com/store/apps/details?id=semarangkota.sidnok&pcampaignid=web_share' target='_blank'>Aplikasi Si D'nOK</a><br>"
+      }
+    },
+
+    {
+      "id": "PINDAH-001",
+      "category": "perpindahan_keluar",
+      "subcategory": "surat_pindah",
+      "keywords": ["pindah", "keluar", "surat pindah", "domisili", "pindah kota", "pindah kabupaten", "pindah provinsi", "luar kota"],
+      "questions": [
+        "cara mengurus surat pindah keluar",
+        "syarat pindah domisili keluar kota",
+        "prosedur pindah keluar kota semarang",
+        "cara buat surat keterangan pindah",
+        "dokumen pindah ke kota lain",
+        "mau pindah keluar semarang apa saja syaratnya",
+        "cara urus pindah domisili",
+        "persyaratan pindah keluar daerah"
+      ],
+      "answer": {
+        "text": "Persyaratan dan Prosedur mengurus Surat Keterangan Pindah Keluar (SKPWNI):",
+        "list": [
+          "PERSYARATAN DOKUMEN:",
+          " Kartu Keluarga Asli",
+          " KTP pasangan & surat nikah(apabila menikah)/ akta cerai (apabila bercerai)"
+        ],
+        "prosedur": [
+          " Buka Website <a href='https://sidnok.semarangkota.go.id/' target='_blank'>Si D'nOK</a>","atau Download <a href='https://play.google.com/store/apps/details?id=semarangkota.sidnok&pcampaignid=web_share' target='_blank'>Aplikasi Si D'nOK</a>",
+          " Resgistrasi akun menggunakan NIK, No KK, No hp Aktif, Email aktif, nama lengkap sesuai ktp (apabila belum memiliki akun)",
+          " Login dengan NIK dan Password yg dikirim diemail atau password yg telah diganti mandiri",
+          " Pilih menu PERPINDAHAN KELUAR",
+          " Isi semua data yang diminta dan ikuti alurnya pastikan data yang dimasukkan benar dan sesuai",
+          " Unggah dokumen persyaratan, dokumen yang diunggah harus dokumen asli (dengan jelas agar tidak tertolak)",
+          " Kirim pengajuan",
+          " Simpan kode pelayanan untuk memantau status pengajuan atau pantau status pengajuan melalui fitur pengajuan",
+          " Jika status PENGAJUAN DITOLAK maka perbaiki pengajuan dengan klik tombol revisi pada fitur pengajuan dan tambahkan dokumen atau data yang direvisi sesuai dengan keterangan penolakan",
+          " Jika status sudah SIAP AMBIL, SKPWNI/KK  diterbitkan secara digital melalui email untuk dicetak secara mandiri"
+        ],
+        "note": "Surat pindah keluar diurus di kantor kelurahan setempat. Setelah mendapat SKPWNI, segera lapor ke Dukcapil tujuan paling lambat 30 hari."
+      }
+    },
+
+    {
+      "id": "PINDAH-002",
+      "category": "perpindahan_keluar",
+      "subcategory": "pindah_antar_kelurahan",
+      "keywords": ["pindah", "kelurahan", "kecamatan", "dalam kota", "dalam semarang"],
+      "questions": [
+        "cara pindah antar kelurahan di semarang",
+        "pindah alamat dalam kota semarang",
+        "pindah kecamatan di semarang caranya",
+        "pindah dalam satu kota syaratnya apa",
+        "pindah kelurahan dokumen apa saja"
+      ],
+      "answer": {
+        "text": "Persyaratan pindah antar kelurahan / kecamatan dalam Kota Semarang:",
+        "list": [
+          " KTP asli pemohon",
+          " Kartu Keluarga (KK) asli",
+          " <a href='https://sidnok.semarangkota.go.id/get-berkas/1712130972' target='_blank'>Surat Pernyataan Perubahan Elemen Data Kependudukan</a> (Apabila ada perubahan elemen data pada KK)",
+          " <a href='https://sidnok.semarangkota.go.id/get-berkas/1740727423' target='_blank'>Surat Pernyataan Alamat Digunakan dalam Administrasi Kependudukan</a> (Apabila kontrak)",
+          " <a href='https://sidnok.semarangkota.go.id/get-berkas/1740727896' target='_blank'>Surat Pernyataan Menggunakan Alamat Rumah Sendiri</a>(Apabila rumah sendiri)",
+          " <a href='https://sidnok.semarangkota.go.id/get-berkas/1740727518' target='_blank'>Surat Pernyatan Tidak Keberatan Numpang KK</a> (Apabila numpang KK)"
+        ],
+        "prosedur": [
+          " Buka Website <a href='https://sidnok.semarangkota.go.id/' target='_blank'>Si D'nOK</a>","atau Download <a href='https://play.google.com/store/apps/details?id=semarangkota.sidnok&pcampaignid=web_share' target='_blank'>Aplikasi Si D'nOK</a>",
+          " Resgistrasi akun menggunakan NIK, No KK, No hp Aktif, Email aktif, nama lengkap sesuai ktp (apabila belum memiliki akun)",
+          " Login dengan NIK dan Password yg dikirim diemail atau password yg telah diganti mandiri",
+          " Pilih menu PERPINDAHAN KELUAR",
+          " Isi semua data yang diminta dan ikuti alurnya pastikan data yang dimasukkan benar dan sesuai",
+          " Unggah dokumen persyaratan, dokumen yang diunggah harus dokumen asli (dengan jelas agar tidak tertolak)",
+          " Kirim pengajuan",
+          " Simpan kode pelayanan untuk memantau status pengajuan atau pantau status pengajuan melalui fitur pengajuan",
+          " Jika status PENGAJUAN DITOLAK maka perbaiki pengajuan dengan klik tombol revisi pada fitur pengajuan dan tambahkan dokumen atau data yang direvisi sesuai dengan keterangan penolakan",
+          " Jika status sudah SIAP AMBIL, KK  diterbitkan secara digital melalui email untuk dicetak secara mandiri"
+        ],
+        "note": "Setelah mendapat KK baru, wajib datang ke kantor Disdukcapil atau Unit layanan Adminduk terdekat untuk mencetak KTP baru."
+      }
+    },
+
+    {
+      "id": "DATANG-001",
+      "category": "kedatangan",
+      "subcategory": "lapor_datang",
+      "keywords": ["datang", "pindah datang", "kedatangan", "lapor", "pendatang baru", "baru pindah ke semarang"],
+      "questions": [
+        "cara lapor pindah datang ke semarang",
+        "baru pindah ke semarang harus ngapain",
+        "syarat lapor kedatangan di semarang",
+        "prosedur pindah datang ke kota semarang",
+        "dokumen untuk lapor datang",
+        "baru datang dari luar kota cara lapor",
+        "cara mengurus pindah datang",
+        "pendatang baru semarang syaratnya apa"
+      ],
+      "answer": {
+        "text": "Persyaratan lapor pindah datang ke Kota Semarang:",
+        "list": [
+          "Surat Keterangan Pindah (SKPWNI) dari daerah asal",
+          "KTP asli dan atau KIA (jika sudah punya)",
+          "Kartu Keluarga (KK) lama pasangan apabila menikah",
+          "Surat nikah atau akta perkawinan apabila menikah, surat cerai apabila bercerai",
+          "<a href='https://sidnok.semarangkota.go.id/get-berkas/1712130972' target='_blank'>Surat Pernyataan Perubahan Elemen Data Kependudukan</a> (Apabila ada perubahan elemen data pada KK)",
+          "<a href='https://sidnok.semarangkota.go.id/get-berkas/1740727423' target='_blank'>Surat Pernyataan Alamat Digunakan dalam Administrasi Kependudukan</a> (Apabila kontrak)",
+          "<a href='https://sidnok.semarangkota.go.id/get-berkas/1740727896' target='_blank'>Surat Pernyataan Menggunakan Alamat Rumah Sendiri</a>(Apabila rumah sendiri)",
+          "<a href='https://sidnok.semarangkota.go.id/get-berkas/1740727518' target='_blank'>Surat Pernyatan Tidak Keberatan Numpang KK</a> (Apabila numpang KK)"
+        ],
+        "prosedur": [
+          " Buka Website <a href='https://sidnok.semarangkota.go.id/' target='_blank'>Si D'nOK</a>","atau Download <a href='https://play.google.com/store/apps/details?id=semarangkota.sidnok&pcampaignid=web_share' target='_blank'>Aplikasi Si D'nOK</a>",
+          " Resgistrasi akun menggunakan NIK, No KK, No hp Aktif, Email aktif, nama lengkap sesuai ktp (apabila belum memiliki akun)",
+          " Login dengan NIK dan Password yg dikirim diemail atau password yg telah diganti mandiri",
+          " Pilih menu KEDATANGAN",
+          " Isi semua data yang diminta dan ikuti alurnya pastikan data yang dimasukkan benar dan sesuai",
+          " Unggah dokumen persyaratan, dokumen yang diunggah harus dokumen asli (dengan jelas agar tidak tertolak)",
+          " Kirim pengajuan",
+          " Simpan kode pelayanan untuk memantau status pengajuan atau pantau status pengajuan melalui fitur pengajuan",
+          " Jika status PENGAJUAN DITOLAK maka perbaiki pengajuan dengan klik tombol revisi pada fitur pengajuan dan tambahkan dokumen atau data yang direvisi sesuai dengan keterangan penolakan",
+          " Jika status sudah SIAP AMBIL, KK  diterbitkan secara digital melalui email untuk dicetak secara mandiri"
+        ],
+        "note": "Lapor datang dilakukan paling lambat 30 hari setelah tiba di Kota Semarang. KTP baru akan diterbitkan setelah KK yang baru sudah jadi."
+      }
+    },
+
+    {
+      "id": "DATANG-002",
+      "category": "kedatangan",
+      "subcategory": "wna_datang",
+      "keywords": ["wna", "warga negara asing", "orang asing", "tinggal sementara", "izin tinggal"],
+      "questions": [
+        "wna mau tinggal di semarang caranya",
+        "orang asing pindah ke semarang syarat apa",
+        "cara lapor kedatangan warga negara asing",
+        "wna mau daftar kependudukan semarang",
+        "izin tinggal orang asing di semarang"
+      ],
+      "answer": {
+        "text": "Persyaratan lapor kedatangan bagi Warga Negara Asing (WNA):",
+        "list": [
+          "Paspor yang masih berlaku",
+          "Izin Tinggal Terbatas (ITAS) atau Izin Tinggal Tetap (ITAP) dari Imigrasi",
+          "Surat keterangan dari sponsor / perusahaan (jika ada)",
+          "Surat pengantar RT/RW setempat"
+        ],
+        "note": "WNA yang memiliki ITAP dapat memperoleh KTP-el khusus WNA. Pengurusan langsung di Dinas Dukcapil Kota Semarang."
+      }
+    },
+
+    {
+      "id": "BIODATA-001",
+      "category": "perubahan_biodata_kk",
+      "subcategory": "ubah_nama",
+      "keywords": ["ubah", "ganti", "nama", "biodata", "salah nama", "perbaikan data", "kk"],
+      "questions": [
+        "cara ubah nama di kk",
+        "ganti nama di kartu keluarga",
+        "nama saya salah di kk gimana",
+        "perbaikan nama di kartu keluarga",
+        "syarat ubah nama di kk",
+        "perubahan nama di dokumen kependudukan"
+      ],
+      "answer": {
+        "text": "Persyaratan perubahan nama di Kartu Keluarga (KK):",
+        "list": [
+          "KK asli yang akan diubah",
+          "KTP asli pemohon",
+          "Penetapan pengadilan negeri tentang perubahan nama (jika ganti nama resmi)",
+          "Akta kelahiran asli",
+          "<a href='https://sidnok.semarangkota.go.id/get-berkas/1712130972' target='_blank'>Surat Pernyataan Perubahan Elemen Data Kependudukan</a>"
+        ],
+        "prosedur": [
+          " Buka Website <a href='https://sidnok.semarangkota.go.id/' target='_blank'>Si D'nOK</a>","atau Download <a href='https://play.google.com/store/apps/details?id=semarangkota.sidnok&pcampaignid=web_share' target='_blank'>Aplikasi Si D'nOK</a>",
+          " Resgistrasi akun menggunakan NIK, No KK, No hp Aktif, Email aktif, nama lengkap sesuai ktp (apabila belum memiliki akun)",
+          " Login dengan NIK dan Password yg dikirim diemail atau password yg telah diganti mandiri",
+          " Pengajuan dilakukan pada akun PEMOHON (yang bersangkutan sendiri)",
+          " Pilih menu PERUBAHAN BIODATA KK",
+          " Isi semua data yang diminta dan ikuti alurnya pastikan data yang dimasukkan benar dan sesuai",
+          " Unggah dokumen persyaratan, dokumen yang diunggah harus dokumen asli (dengan jelas agar tidak tertolak)",
+          " Kirim pengajuan",
+          " Simpan kode pelayanan untuk memantau status pengajuan atau pantau status pengajuan melalui fitur pengajuan",
+          " Jika status PENGAJUAN DITOLAK maka perbaiki pengajuan dengan klik tombol revisi pada fitur pengajuan dan tambahkan dokumen atau data yang direvisi sesuai dengan keterangan penolakan",
+          " Jika status sudah SIAP DIAMBIL,KK baru diterbitkan secara digital (barcode) melalui email untuk diunduh dan dicetak sendiri"
+        ],
+        "note": "Jika perubahan karena kesalahan penulisan (typo), cukup bawa dokumen pendukung tanpa penetapan pengadilan."
+      }
+    },
+
+    {
+      "id": "BIODATA-002",
+      "category": "perubahan_biodata_kk",
+      "subcategory": "ubah_status_perkawinan",
+      "keywords": ["status", "perkawinan", "menikah", "cerai", "janda", "duda", "biodata", "kk"],
+      "questions": [
+        "cara ubah status perkawinan di kk",
+        "ganti status kawin di kartu keluarga",
+        "sudah menikah mau ubah status di kk",
+        "status cerai di kk gimana caranya",
+        "perubahan status perkawinan di dokumen kependudukan"
+      ],
+      "answer": {
+        "text": "Persyaratan perubahan status perkawinan di KK:",
+        "list": [
+          "KK asli",
+          "KTP asli pemohon",
+          "Buku nikah / akta perkawinan (jika sudah menikah)",
+          "Akta cerai dari pengadilan (jika cerai)",
+          "<a href='https://sidnok.semarangkota.go.id/get-berkas/1712130972' target='_blank'>Surat Pernyataan Perubahan Elemen Data Kependudukan</a>"
+        ],
+        "prosedur": [
+          " Buka Website <a href='https://sidnok.semarangkota.go.id/' target='_blank'>Si D'nOK</a>","atau Download <a href='https://play.google.com/store/apps/details?id=semarangkota.sidnok&pcampaignid=web_share' target='_blank'>Aplikasi Si D'nOK</a>",
+          " Resgistrasi akun menggunakan NIK, No KK, No hp Aktif, Email aktif, nama lengkap sesuai ktp (apabila belum memiliki akun)",
+          " Login dengan NIK dan Password yg dikirim diemail atau password yg telah diganti mandiri",
+          " Pengajuan dilakukan pada akun PEMOHON (yang bersangkutan sendiri)",
+          " Pilih menu PERUBAHAN BIODATA KK",
+          " Isi semua data yang diminta dan ikuti alurnya pastikan data yang dimasukkan benar dan sesuai",
+          " Unggah dokumen persyaratan, dokumen yang diunggah harus dokumen asli (dengan jelas agar tidak tertolak)",
+          " Kirim pengajuan",
+          " Simpan kode pelayanan untuk memantau status pengajuan atau pantau status pengajuan melalui fitur pengajuan",
+          " Jika status PENGAJUAN DITOLAK maka perbaiki pengajuan dengan klik tombol revisi pada fitur pengajuan dan tambahkan dokumen atau data yang direvisi sesuai dengan keterangan penolakan",
+          " Jika status sudah SIAP DIAMBIL,KK baru diterbitkan secara digital (barcode) melalui email untuk diunduh dan dicetak sendiri"
+        ],
+        "note": "Pengajuan dilakukan secara Online ya, Dilihat dulu prosedur pengajuan diatas okeyyyyy."
+      }
+    },
+
+    {
+      "id": "BIODATA-003",
+      "category": "perubahan_biodata_kk",
+      "subcategory": "ubah_pendidikan_pekerjaan",
+      "keywords": ["pendidikan", "pekerjaan", "profesi", "biodata", "ubah", "update", "kk"],
+      "questions": [
+        "cara ubah pendidikan di kk",
+        "ganti data pekerjaan di kartu keluarga",
+        "update data pendidikan di kk",
+        "perubahan pekerjaan di kk",
+        "cara ubah status pendidikan di kartu keluarga"
+      ],
+      "answer": {
+        "text": "Persyaratan perubahan data pendidikan atau pekerjaan di KK:",
+        "list": [
+          "KK asli",
+          "KTP asli pemohon",
+          "Ijazah terakhir (untuk perubahan pendidikan)",
+          "Surat keterangan kerja / kartu pegawai (untuk perubahan pekerjaan)",
+          "<a href='https://sidnok.semarangkota.go.id/get-berkas/1712130972' target='_blank'>Surat Pernyataan Perubahan Elemen Data Kependudukan</a>"
+        ],
+        "prosedur": [
+          " Buka Website <a href='https://sidnok.semarangkota.go.id/' target='_blank'>Si D'nOK</a>","atau Download <a href='https://play.google.com/store/apps/details?id=semarangkota.sidnok&pcampaignid=web_share' target='_blank'>Aplikasi Si D'nOK</a>",
+          " Resgistrasi akun menggunakan NIK, No KK, No hp Aktif, Email aktif, nama lengkap sesuai ktp (apabila belum memiliki akun)",
+          " Login dengan NIK dan Password yg dikirim diemail atau password yg telah diganti mandiri",
+          " Pengajuan dilakukan pada akun PEMOHON (yang bersangkutan sendiri)",
+          " Pilih menu PERUBAHAN BIODATA KK",
+          " Isi semua data yang diminta dan ikuti alurnya pastikan data yang dimasukkan benar dan sesuai",
+          " Unggah dokumen persyaratan, dokumen yang diunggah harus dokumen asli (dengan jelas agar tidak tertolak)",
+          " Kirim pengajuan",
+          " Simpan kode pelayanan untuk memantau status pengajuan atau pantau status pengajuan melalui fitur pengajuan",
+          " Jika status PENGAJUAN DITOLAK maka perbaiki pengajuan dengan klik tombol revisi pada fitur pengajuan dan tambahkan dokumen atau data yang direvisi sesuai dengan keterangan penolakan",
+          " Jika status sudah SIAP DIAMBIL,KK baru diterbitkan secara digital (barcode) melalui email untuk diunduh dan dicetak sendiri"
+        ],
+        "note": "Pengajuan dilakukan secara Online ya, Dilihat dulu prosedur pengajuan diatas okeyyyyy."
+      }
+    },
+
+    {
+      "id": "KIA-001",
+      "category": "kia",
+      "subcategory": "membuat_kia",
+      "keywords": ["kia", "kartu identitas anak", "identitas anak", "kartu anak"],
+      "questions": [
+        "cara membuat kia",
+        "syarat buat kartu identitas anak",
+        "apa itu kia",
+        "cara daftar kartu identitas anak",
+        "persyaratan kartu identitas anak",
+        "buat kia untuk anak syaratnya apa",
+        "dokumen untuk membuat kia",
+        "cara urus kartu identitas anak"
+      ],
+      "answer": {
+        "text": "KIA (Kartu Identitas Anak) adalah identitas resmi bagi anak di bawah 17 tahun. Persyaratannya:",
+        "list": [
+          "Akta kelahiran anak asli",
+          "Kartu Keluarga (KK) orang tua",
+          "KTP kedua orang tua",
+          "Pas foto anak (bagi anak usia 5 tahun ke atas)"
+        ],
+        "prosedur": [
+          " Buka Website <a href='https://sidnok.semarangkota.go.id/' target='_blank'>Si D'nOK</a>","atau Download <a href='https://play.google.com/store/apps/details?id=semarangkota.sidnok&pcampaignid=web_share' target='_blank'>Aplikasi Si D'nOK</a>",
+          " Resgistrasi akun menggunakan NIK, No KK, No hp Aktif, Email aktif, nama lengkap sesuai ktp (apabila belum memiliki akun)",
+          " Login dengan NIK dan Password yg dikirim diemail atau password yg telah diganti mandiri",
+          " Pengajuan dilakukan pada akun ORANG TUA",
+          " Pilih menu KARTU IDENTITAS ANAK",
+          " Isi semua data yang diminta dan ikuti alurnya pastikan data yang dimasukkan benar dan sesuai",
+          " Unggah dokumen persyaratan, dokumen yang diunggah harus dokumen asli (dengan jelas agar tidak tertolak)",
+          " Kirim pengajuan",
+          " Simpan kode pelayanan untuk memantau status pengajuan atau pantau status pengajuan melalui fitur pengajuan",
+          " Jika status PENGAJUAN DITOLAK maka perbaiki pengajuan dengan klik tombol revisi pada fitur pengajuan dan tambahkan dokumen atau data yang direvisi sesuai dengan keterangan penolakan",
+          " Jika status sudah SIAP DIAMBIL, pemohon datang ke Kantor Disdukcapil atau Unit layanan terdekat untuk cetak KIA"
+        ],
+        "note": "KIA terbagi dua: KIA untuk anak 0-4 tahun (tanpa foto) dan KIA untuk anak 5-17 tahun (dengan foto). KIA gratis dan berlaku hingga anak berusia 17 tahun."
+      }
+    },
+
+    {
+      "id": "KIA-002",
+      "category": "kia",
+      "subcategory": "kia_hilang_rusak",
+      "keywords": ["kia", "kartu identitas anak", "hilang", "rusak", "ganti"],
+      "questions": [
+        "kia anak hilang gimana",
+        "kartu identitas anak rusak minta ganti",
+        "cara ganti kia yang hilang",
+        "syarat ganti kia hilang atau rusak"
+      ],
+      "answer": {
+        "text": "Untuk mengurus KIA yang hilang atau rusak:",
+        "list": [
+          "Surat kehilangan dari Kepolisian (jika hilang)",
+          "KIA lama (jika rusak)",
+          "Akta kelahiran anak",
+          "Kartu Keluarga (KK)",
+          "Pas foto anak (bagi anak usia 5 tahun ke atas)",
+          "KTP orang tua"
+        ],
+         "prosedur": [
+          " Buka Website <a href='https://sidnok.semarangkota.go.id/' target='_blank'>Si D'nOK</a>","atau Download <a href='https://play.google.com/store/apps/details?id=semarangkota.sidnok&pcampaignid=web_share' target='_blank'>Aplikasi Si D'nOK</a>",
+          " Resgistrasi akun menggunakan NIK, No KK, No hp Aktif, Email aktif, nama lengkap sesuai ktp (apabila belum memiliki akun)",
+          " Login dengan NIK dan Password yg dikirim diemail atau password yg telah diganti mandiri",
+          " Pengajuan dilakukan pada akun ORANG TUA",
+          " Pilih menu KARTU IDENTITAS ANAK",
+          " Isi semua data yang diminta dan ikuti alurnya pastikan data yang dimasukkan benar dan sesuai",
+          " Unggah dokumen persyaratan, dokumen yang diunggah harus dokumen asli (dengan jelas agar tidak tertolak)",
+          " Kirim pengajuan",
+          " Simpan kode pelayanan untuk memantau status pengajuan atau pantau status pengajuan melalui fitur pengajuan",
+          " Jika status PENGAJUAN DITOLAK maka perbaiki pengajuan dengan klik tombol revisi pada fitur pengajuan dan tambahkan dokumen atau data yang direvisi sesuai dengan keterangan penolakan",
+          " Jika status sudah SIAP DIAMBIL, pemohon datang ke Kantor Disdukcapil atau Unit layanan terdekat untuk cetak KIA"
+        ],
+        "note": "Pengurusan dilakukan di Dinas Dukcapil Kota Semarang secara gratis."
+      }
+    },
+
+    {
+      "id": "NIKAH-001",
+      "category": "akta_nikah_cerai_non_muslim",
+      "subcategory": "akta_perkawinan",
+      "keywords": ["akta nikah", "akta perkawinan", "non muslim", "kristen", "katolik", "hindu", "budha", "konghucu", "perkawinan"],
+      "questions": [
+        "cara buat akta perkawinan non muslim",
+        "syarat akta nikah bagi non muslim",
+        "cara mendaftarkan pernikahan non muslim",
+        "akta perkawinan untuk yang bukan islam",
+        "persyaratan akta nikah kristen katolik",
+        "cara urus akta nikah non muslim di dukcapil",
+        "dokumen untuk akta perkawinan non muslim",
+        "pernikahan non muslim syaratnya apa di dukcapil"
+      ],
+      "answer": {
+        "text": "Persyaratan pencatatan perkawinan / akta nikah bagi non-Muslim di Dukcapil:",
+        "list": [
+          "Surat pemberkatan / catatan sipil dari gereja / pura / vihara / klenteng",
+          "KTP kedua mempelai",
+          "Kartu Keluarga (KK) kedua mempelai",
+          "Akta kelahiran kedua mempelai",
+          "Pas foto berdampingan ukuran 4x6 (2 lembar)",
+          "Surat keterangan belum menikah dari kelurahan",
+          "Surat izin orang tua (jika salah satu berusia di bawah 21 tahun)",
+          "Akta cerai bagi janda/duda cerai hidup",
+          "Akta kematian bagi janda/duda cerai mati",
+          "Izin kawin dari Pengadilan Negeri (apabila calon pengantin berusia kurang dari 19 tahun",
+          "Agama kedua mempelai harus sama"
+        ],
+         "prosedur": [
+          " Buka Website <a href='https://sidnok.semarangkota.go.id/' target='_blank'>Si D'nOK</a>","atau Download <a href='https://play.google.com/store/apps/details?id=semarangkota.sidnok&pcampaignid=web_share' target='_blank'>Aplikasi Si D'nOK</a>",
+          " Resgistrasi akun menggunakan NIK, No KK, No hp Aktif, Email aktif, nama lengkap sesuai ktp (apabila belum memiliki akun)",
+          " Login dengan NIK dan Password yg dikirim diemail atau password yg telah diganti mandiri",
+          " Pengajuan dilakukan pada akun salah satu pasangan",
+          " Pilih menu AKTA PERKAWINAN & AKTA PERCERAIAN",
+          " Isi semua data yang diminta dan ikuti alurnya pastikan data yang dimasukkan benar dan sesuai",
+          " Unggah dokumen persyaratan, dokumen yang diunggah harus dokumen asli (dengan jelas agar tidak tertolak)",
+          " Kirim pengajuan",
+          " Simpan kode pelayanan untuk memantau status pengajuan atau pantau status pengajuan melalui fitur pengajuan",
+          " Jika status PENGAJUAN DITOLAK maka perbaiki pengajuan dengan klik tombol revisi pada fitur pengajuan dan tambahkan dokumen atau data yang direvisi sesuai dengan keterangan penolakan",
+          " Jika status sudah DIPROSES, pemohon akan dihubungi oleh petugas Disdukcapil untuk informasi tanggal pencatatan perkawinan. Setelah selesai, Akta Perkawinan dikirim secara digital (barcode) melalui email"
+        ],
+        "note": "Pastikan email dan nomor telepon yang didaftarkan pada akun Si D'nOK merupakan email dan nomor telepon yang aktif agar bisa menerima dokumen pengajuan."
+      }
+    },
+
+    {
+      "id": "CERAI-001",
+      "category": "akta_nikah_cerai_non_muslim",
+      "subcategory": "akta_perceraian",
+      "keywords": ["akta cerai", "perceraian", "cerai", "non muslim", "putusan pengadilan"],
+      "questions": [
+        "cara buat akta cerai non muslim",
+        "syarat akta perceraian non muslim",
+        "cara urus akta cerai di dukcapil",
+        "dokumen akta cerai non muslim",
+        "perceraian non muslim dicatat dimana",
+        "setelah cerai di pengadilan harus ngapain",
+        "cara mendaftarkan perceraian ke dukcapil"
+      ],
+      "answer": {
+        "text": "Persyaratan pencatatan perceraian / akta cerai bagi non-Muslim di Dukcapil:",
+        "list": [
+          "Putusan pengadilan negeri yang telah berkekuatan hukum tetap",
+          "Akta perkawinan / akta nikah asli",
+          "KTP asli",
+          "Kartu Keluarga (KK) asli"
+        ],
+        "prosedur": [
+          " Buka Website <a href='https://sidnok.semarangkota.go.id/' target='_blank'>Si D'nOK</a>","atau Download <a href='https://play.google.com/store/apps/details?id=semarangkota.sidnok&pcampaignid=web_share' target='_blank'>Aplikasi Si D'nOK</a>",
+          " Resgistrasi akun menggunakan NIK, No KK, No hp Aktif, Email aktif, nama lengkap sesuai ktp (apabila belum memiliki akun)",
+          " Login dengan NIK dan Password yg dikirim diemail atau password yg telah diganti mandiri",
+          " Pengajuan dilakukan pada akun salah satu pasangan",
+          " Pilih menu AKTA PERKAWINAN & AKTA PERCERAIAN",
+          " Isi semua data yang diminta dan ikuti alurnya pastikan data yang dimasukkan benar dan sesuai",
+          " Unggah dokumen persyaratan, dokumen yang diunggah harus dokumen asli (dengan jelas agar tidak tertolak)",
+          " Kirim pengajuan",
+          " Simpan kode pelayanan untuk memantau status pengajuan atau pantau status pengajuan melalui fitur pengajuan",
+          " Jika status PENGAJUAN DITOLAK maka perbaiki pengajuan dengan klik tombol revisi pada fitur pengajuan dan tambahkan dokumen atau data yang direvisi sesuai dengan keterangan penolakan",
+          " Jika status sudah SIAP DIAMBIL, Akta Perceraian dan KK baru diterbitkan secara digital (barcode) melalui email untuk diunduh dan dicetak secara mandiri."
+        ],
+        "note": "Pastikan email dan nomor telepon yang didaftarkan pada akun Si D'nOK merupakan email dan nomor telepon yang aktif agar bisa menerima dokumen pengajuan."
+      }
+    },
+
+    {
+      "id": "MATI-001",
+      "category": "akta_kematian",
+      "subcategory": "membuat_akta_kematian",
+      "keywords": [" kematian", "surat kematian", "meninggal", "wafat", "mati", "almarhum"],
+      "questions": [
+        "cara buat akta kematian",
+        "syarat membuat surat kematian",
+        "cara mengurus akta kematian",
+        "dokumen untuk akta kematian",
+        "buat  kematian",
+        "anggota keluarga meninggal harus urus apa",
+        "persyaratan  kematian",
+        "cara lapor kematian ke dukcapil",
+        "surat keterangan kematian syaratnya apa"
+      ],
+      "answer": {
+        "text": "Persyaratan pembuatan Akta Kematian:",
+        "list": [
+          "Surat keterangan kematian dari rumah sakit / dokter / puskesmas (apabila meninggal di Rumah Sakit)",
+          "Surat keterangan kematian dari kelurahan setempat (apabila meninggal dirumah)",
+          "KTP dan KK asli almarhum / almarhumah",
+          "KK dan KTP asli pelapor usia minimal 21 tahun (anggota keluarga/ahli waris)",
+          "KTP asli saksi 2 orang",
+          "<a href='https://sidnok.semarangkota.go.id/get-berkas/1720769569' target='_blank' style='color:#0056b3;text-decoration:underline;'>SPTJM</a> (jika tidak terdapat di database)"
+        ],
+         "prosedur": [
+          " Buka Website <a href='https://sidnok.semarangkota.go.id/' target='_blank'>Si D'nOK</a>","atau Download <a href='https://play.google.com/store/apps/details?id=semarangkota.sidnok&pcampaignid=web_share' target='_blank'>Aplikasi Si D'nOK</a>",
+          " Resgistrasi akun menggunakan NIK, No KK, No hp Aktif, Email aktif, nama lengkap sesuai ktp (apabila belum memiliki akun)",
+          " Login dengan NIK dan Password yg dikirim diemail atau password yg telah diganti mandiri",
+          " Pengajuan dilakukan pada akun PELAPOR (anggota keluarga/ahli waris)",
+          " Pilih menu AKTA KEMATIAN",
+          " Isi semua data yang diminta dan ikuti alurnya pastikan data yang dimasukkan benar dan sesuai",
+          " Unggah dokumen persyaratan, dokumen yang diunggah harus dokumen asli (dengan jelas agar tidak tertolak)",
+          " Kirim pengajuan",
+          " Simpan kode pelayanan untuk memantau status pengajuan atau pantau status pengajuan melalui fitur pengajuan",
+          " Jika status PENGAJUAN DITOLAK maka perbaiki pengajuan dengan klik tombol revisi pada fitur pengajuan dan tambahkan dokumen atau data yang direvisi sesuai dengan keterangan penolakan",
+          " Jika status sudah SIAP DIAMBIL, pemohon wajib datang ke kantor Disdukcapil atau Unit layanan Adminduk terdekat dengan membawa semua dokumen yg diuanggah."
+        ],
+        "note": "Akta kematian penting untuk mengurus warisan, tunjangan, dan penghapusan data almarhum dari KK. Pengurusan dilakukan di Dinas Dukcapil Kota Semarang."
+      }
+    },
+
+    {
+      "id": "MATI-002",
+      "category": "akta_kematian",
+      "subcategory": "kematian_di_luar_domisili",
+      "keywords": ["meninggal", "luar daerah", "beda domisili", " kematian luar kota"],
+      "questions": [
+        "anggota keluarga meninggal di luar kota caranya",
+        " kematian kalau meninggal di luar domisili",
+        "cara urus kematian yang terjadi di luar kota",
+        "meninggal di rumah sakit luar kota dokumen apa",
+        "almarhum meninggal di kota lain cara urus aktanya"
+      ],
+      "answer": {
+        "text": "Jika anggota keluarga meninggal di luar domisili, persyaratannya:",
+        "list": [
+          "Surat keterangan kematian dari rumah sakit / instansi di tempat meninggal",
+          "Surat keterangan kematian dari kelurahan tempat meninggal",
+          "KTP almarhum / almarhumah",
+          "Kartu Keluarga (KK)",
+          "KTP pelapor",
+          "Surat pengantar RT/RW domisili almarhum"
+        ],
+        "note": "Akta kematian tetap diurus di Dinas Dukcapil sesuai domisili almarhum / almarhumah."
+      }
+    },
+  {
+    "id": "SURAT-001",
+      "category": "surat_pernyataan",
+      "subcategory": "surat_pernyataan_perubahan",
+      "keywords": ["perubahan elemen", "perubahan data", "siapa", "membuat", "menandatangani"],
+      "questions": [
+        "siapa yang menandatangai surat pernyataan perubahan elemen kependudukan",
+        "siapa yang membuat surat pernyataan perubahan elemen kependudukan",
+        "cara membuat surat pernyataan perubahan elemen kependudukan",
+        "dokumen untuk surat pernyataan perubahan elemen kependudukan",
+        "surat pernyataan harus menggunakan materai"
+      ],
+      "answer": {
+        "text": "Persyaratan pembuatan Surat Pernyataan Perubahan Elemen atau Data Kependudukan:",
+        "list": [
+          "Surat dibuat oleh orang yang bersangkutan",
+          "Ditanda tangani oleh yang bersangkutan dan bermaterai",
+          "Dilengkapi dengan data dukung sesuai apa yang diubah, misal : ijazah terakhir, SK pekerjaan, Surat Keterangan Golongan darah DLL",
+          "Di scan atau difoto baru di Upload dengan dokumen lainnya sesuai dengan pengajuan yang dilakukan"
+        ],
+        "note":" Download dan Print Suratnya Disini ya <a href='https://sidnok.semarangkota.go.id/get-berkas/1712130972' target='_blank'>Surat Pernyataan Perubahan Elemen Data Kependudukan</a>"
+  }
+  },
+  {
+    "id": "SURAT-002",
+      "category": "surat_pernyataan",
+      "subcategory": "surat_pernyataan_rumah_sendiri",
+      "keywords": ["rumah sendiri", "surat pernyataan rumah sendiri", "siapa", "membuat", "menandatangani"],
+      "questions": [
+        "siapa yang menandatangai surat pernyataan rumah sendiri",
+        "siapa yang membuat surat pernyataan rumah sendiri",
+        "cara membuat surat pernyataan rumah sendiri",
+        "surat pernyataan harus menggunakan materai"
+      ],
+      "answer": {
+        "text": "Persyaratan pembuatan Surat Pernyataan Menggunakan Alamat Rumah Sendiri:",
+        "list": [
+          "Surat dibuat oleh kepala kelaurga",
+          "Ditanda tangani oleh yang kepala keluarga dan bermaterai",
+          "Dimintakan tanda tangan RT dan RW pada alamat rumah tersebut",
+          "Di scan atau difoto baru di Upload dengan dokumen lainnya sesuai dengan pengajuan yang dilakukan"
+        ],
+        "note":" Download dan Print Suratnya Disini ya <a href='https://sidnok.semarangkota.go.id/get-berkas/1740727896' target='_blank'>Surat Pernyataan Menggunakan Alamat Rumah Sendiri</a>"
+  }
+  },
+  {
+    "id": "SURAT-003",
+      "category": "surat_pernyataan",
+      "subcategory": "surat_pernyataan_kontrak",
+      "keywords": ["kontrak", "surat pernyataan kontrak rumah", "siapa", "membuat", "menandatangani"],
+      "questions": [
+        "siapa yang menandatangai surat pernyataan rumah kontrak",
+        "siapa yang membuat surat pernyataan rumah kontrak",
+        "cara membuat surat pernyataan rumah kontrak",
+        "surat pernyataan rumah kontrak harus menggunakan materai"
+      ],
+      "answer": {
+        "text": "Persyaratan pembuatan Surat Pernyataan Alamat digunakan dalam Administrasi Kependudukan atau Kontrak:",
+        "list": [
+          "Surat dibuat oleh yang punya kontrakan",
+          "Ditanda tangani oleh yang yang punya kontrakan dan bermaterai",
+          "Dimintakan tanda tangan RT dan RW pada alamat rumah tersebut",
+          "Di scan atau difoto baru di Upload dengan dokumen lainnya sesuai dengan pengajuan yang dilakukan"
+        ],
+        "note": " Download dan Print Suratnya Disini ya <a href='https://sidnok.semarangkota.go.id/get-berkas/1740727423' target='_blank'>Surat Pernyataan Alamat Digunakan dalam Administrasi Kependudukan</a>"
+  }
+  },
+  {
+    "id": "SURAT-004",
+      "category": "surat_pernyataan",
+      "subcategory": "surat_pernyataan_numppang_kk",
+      "keywords": ["numpang kk", "surat pernyataan numpang kk", "siapa", "membuat", "menandatangani"],
+      "questions": [
+        "siapa yang menandatangai surat pernyataan tidak keberatan numpang kk",
+        "siapa yang membuat surat pernyataan tidak keberatan numpang kk",
+        "cara membuat surat pernyataan tidak keberatan numpang kk",
+        "surat pernyataan tidak keberatan numpang kk harus menggunakan materai"
+      ],
+      "answer": {
+        "text": "Persyaratan pembuatan Surat Pernyataan Alamat Tidak Keberatan Numpang KK:",
+        "list": [
+          "Surat dibuat oleh Kepala Keluarga dari KK yang ditumpangi",
+          "Ditanda tangani oleh yang Kepala Keluarga dari KK yang ditumpangi dan bermaterai",
+          "Dimintakan tanda tangan RT dan RW pada alamat rumah tersebut",
+          "Di scan atau difoto baru di Upload dengan dokumen lainnya sesuai dengan pengajuan yang dilakukan"
+        ],
+        "note": " Download dan Print Suratnya Disini ya <a href='https://sidnok.semarangkota.go.id/get-berkas/1740727518' target='_blank'>Surat Pernyatan Tidak Keberatan Numpang KK</a>"
+  }
+  }
+
+  ]
+}
