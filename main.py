@@ -7,25 +7,6 @@ import json, logging, re, os
 from sklearn.feature_extraction.text import TfidfVectorizer     
 from sklearn.metrics.pairwise import cosine_similarity          
 
-STOPWORDS = {
-    # Kata kerja umum
-    "cara", "membuat", "mengurus", "buat", "urus", "minta",
-    "mau", "ingin", "perlu", "butuh", "hendak",
-    
-    # Kata tanya
-    "apa", "apa saja", "bagaimana", "dimana", "kemana",
-    "berapa", "kapan", "siapa", "apakah", "gimana",
-    
-    # Kata sambung & depan
-    "yang", "dan", "atau", "di", "ke", "dari", "untuk",
-    "dengan", "pada", "adalah", "ini", "itu", "juga",
-    "ada", "tidak", "bisa", "boleh", "harus", "sudah",
-    
-    # Kata umum administrasi
-    "syarat", "persyaratan", "prosedur", "dokumen",
-    "proses", "langkah", "tahap", "alur"
-}
-
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -53,17 +34,15 @@ def preprocess(text: str) -> str:
     text = text.lower().strip()
     text = re.sub(r"[^\w\s]", "", text)
     text = re.sub(r"\s+", " ", text)
-    
-    # ✅ Filter stopwords
-    words = text.split()
-    words = [w for w in words if w not in STOPWORDS]
-    
-    # Jika setelah filter kata habis, kembalikan teks asli
-    if not words:
-        return text
-    
-    return " ".join(words)
+    return text  # ← tanpa filter stopwords
 
+# TF-IDF tetap pakai max_df untuk filter otomatis
+vectorizer = TfidfVectorizer(
+    ngram_range=(1, 2),
+    min_df=1,
+    max_df=0.85,     
+    sublinear_tf=True
+)
 # 2️⃣ FUNGSI LOAD DATA
 def load_data():
     if not os.path.exists(INTENTS_PATH):
