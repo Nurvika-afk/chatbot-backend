@@ -4,6 +4,8 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from pydantic import BaseModel
 import json, logging, re, os
+from sklearn.feature_extraction.text import TfidfVectorizer     
+from sklearn.metrics.pairwise import cosine_similarity          
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
