@@ -7,6 +7,25 @@ import json, logging, re, os
 from sklearn.feature_extraction.text import TfidfVectorizer     
 from sklearn.metrics.pairwise import cosine_similarity          
 
+STOPWORDS = {
+    # Kata kerja umum
+    "cara", "membuat", "mengurus", "buat", "urus", "minta",
+    "mau", "ingin", "perlu", "butuh", "hendak",
+    
+    # Kata tanya
+    "apa", "apa saja", "bagaimana", "dimana", "kemana",
+    "berapa", "kapan", "siapa", "apakah", "gimana",
+    
+    # Kata sambung & depan
+    "yang", "dan", "atau", "di", "ke", "dari", "untuk",
+    "dengan", "pada", "adalah", "ini", "itu", "juga",
+    "ada", "tidak", "bisa", "boleh", "harus", "sudah",
+    
+    # Kata umum administrasi
+    "syarat", "persyaratan", "prosedur", "dokumen",
+    "proses", "langkah", "tahap", "alur"
+}
+
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -34,7 +53,16 @@ def preprocess(text: str) -> str:
     text = text.lower().strip()
     text = re.sub(r"[^\w\s]", "", text)
     text = re.sub(r"\s+", " ", text)
-    return text
+    
+    # ✅ Filter stopwords
+    words = text.split()
+    words = [w for w in words if w not in STOPWORDS]
+    
+    # Jika setelah filter kata habis, kembalikan teks asli
+    if not words:
+        return text
+    
+    return " ".join(words)
 
 # 2️⃣ FUNGSI LOAD DATA
 def load_data():
@@ -107,11 +135,16 @@ except Exception as e:
     raise
 
 # 4️⃣ BUILD TF-IDF
-vectorizer       = TfidfVectorizer(ngram_range=(1, 2))
+vectorizer = TfidfVectorizer(
+    ngram_range=(1, 2),
+    min_df=1,        # kata minimal muncul 1x
+    max_df=0.85,     # abaikan kata yang muncul di lebih dari 85% dokumen
+    sublinear_tf=True  # normalisasi frekuensi kata
+)
 question_vectors = vectorizer.fit_transform(questions)
 logger.info("✅ TF-IDF siap.")
 
-SIMILARITY_THRESHOLD = float(os.getenv("SIMILARITY_THRESHOLD", "0.45"))
+SIMILARITY_THRESHOLD = float(os.getenv("SIMILARITY_THRESHOLD", "0.55"))
 
 # ── Kamus topik & keyword ────────────────────────────────────
 topik_keywords = {
@@ -122,6 +155,8 @@ topik_keywords = {
     "perkawinan": ["perkawinan", "nikah", "menikah", "kawin"],
     "pindah": ["pindah", "domisili", "alamat baru"],
     "kia": ["kia", "kartu identitas anak"],
+    "kedatangan": ["datang", "kedatangan", "lapor datang"],
+    "cerai" : ["cerai", "akta perceraian", "perceraian"]
 }
 
 def topik_dari_pertanyaan(teks: str) -> list:
