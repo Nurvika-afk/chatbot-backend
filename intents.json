@@ -79,7 +79,9 @@
         "syarat membuat kartu keluarga baru",
         "buat kk baru setelah menikah",
         "persyaratan kartu keluarga baru",
-        "dokumen untuk buat kk"
+        "dokumen untuk buat kk",
+        "syarat membuat kk",
+        "syarat kk"
       ],
       "answer": {
         "text": "Persyaratan membuat Kartu Keluarga (KK) baru setelah menikah:",
@@ -182,7 +184,9 @@
         "dokumen untuk akta kelahiran",
         "akta kelahiran anak baru lahir",
         "cara daftar akta lahir",
-        "persyaratan akta kelahiran"
+        "persyaratan akta kelahiran",
+        "syarat akta kelahiran",
+        "syarat akta lahir"
       ],
       "answer": {
         "text": "Persyaratan membuat Akta Kelahiran:",
