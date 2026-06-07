@@ -140,6 +140,28 @@ def topik_dari_pertanyaan(teks: str) -> list:
             hasil.append(topik)
     return hasil
 
+def boost_score(raw_question: str, base_score: float, best_index: int) -> float:
+    """Tambahkan bobot jika kata topik ditemukan di pertanyaan user"""
+    
+    # Ambil topik dari pertanyaan user
+    topik_user = topik_dari_pertanyaan(raw_question.lower())
+    
+    if not topik_user:
+        return base_score
+    
+    # Cek apakah jawaban terbaik mengandung keyword topik user
+    pertanyaan_terbaik = questions[best_index].lower()
+    
+    boost = 0.0
+    for topik in topik_user:
+        keywords_topik = topik_keywords.get(topik, [])
+        if any(k in pertanyaan_terbaik for k in keywords_topik):
+            boost += 0.15  # tambah 0.15 per topik yang cocok
+    
+    boosted = min(base_score + boost, 1.0)  # maksimal 1.0
+    logger.info(f"Score boost: {base_score:.3f} → {boosted:.3f} (topik: {topik_user})")
+    return boosted
+
 # 5️⃣ MODEL REQUEST & RESPONSE
 # ✅ PERUBAHAN: tambah field "message" agar kompatibel dengan frontend React
 class ChatRequest(BaseModel):
@@ -171,6 +193,16 @@ async def chat(request: ChatRequest):
 
     best_score = float(similarities.max())
     best_index = int(similarities.argmax())
+
+    best_score = boost_score(raw_question, best_score, best_index)
+
+    # DEBUG
+    top5 = sorted(enumerate(similarities), key=lambda x: x[1], reverse=True)[:5]
+    for idx, score in top5:
+        logger.info(f"  [{score:.3f}] {questions[idx][:60]}")
+
+    if best_score < SIMILARITY_THRESHOLD:
+        fallback = (...)
 
     # DEBUG
     top5 = sorted(enumerate(similarities), key=lambda x: x[1], reverse=True)[:5]
