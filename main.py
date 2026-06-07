@@ -123,7 +123,7 @@ vectorizer = TfidfVectorizer(
 question_vectors = vectorizer.fit_transform(questions)
 logger.info("✅ TF-IDF siap.")
 
-SIMILARITY_THRESHOLD = float(os.getenv("SIMILARITY_THRESHOLD", "0.55"))
+SIMILARITY_THRESHOLD = float(os.getenv("SIMILARITY_THRESHOLD", "0.45"))
 
 # ── Kamus topik & keyword ────────────────────────────────────
 topik_keywords = {
