@@ -448,7 +448,7 @@
           " Jika status PENGAJUAN DITOLAK maka perbaiki pengajuan dengan klik tombol revisi pada fitur pengajuan dan tambahkan dokumen atau data yang direvisi sesuai dengan keterangan penolakan",
           " Jika status sudah SIAP DIAMBIL,KK baru diterbitkan secara digital (barcode) melalui email untuk diunduh dan dicetak sendiri"
         ],
-        "note": "Jika perubahan karena kesalahan penulisan (typo), cukup bawa dokumen pendukung tanpa penetapan pengadilan."
+        "note": "Jika perubahan karena kesalahan penulisan (typo), cukup upload dokumen pendukung seperti : buku nikah, akta kelahiran, dll tanpa penetapan pengadilan."
       }
     },
 
