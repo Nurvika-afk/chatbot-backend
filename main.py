@@ -4,9 +4,8 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from pydantic import BaseModel
 import json, logging, re, os
-from sklearn.feature_extraction.text import TfidfVectorizer     
-from sklearn.metrics.pairwise import cosine_similarity          
-
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -19,7 +18,7 @@ app.add_middleware(
     allow_credentials=True,
     allow_methods=["GET", "POST"],
     allow_headers=["*"],
-)                           
+)
 
 if os.path.exists("dist"):
     app.mount("/assets", StaticFiles(directory="dist/assets"), name="assets")
@@ -31,12 +30,11 @@ if os.path.exists("dist"):
 INTENTS_PATH = "intents.json"
 
 # 1️⃣ FUNGSI PREPROCESS
-
 def preprocess(text: str) -> str:
     text = text.lower().strip()
     text = re.sub(r"[^\w\s]", "", text)
     text = re.sub(r"\s+", " ", text)
-    return text  # ← tanpa filter stopwords
+    return text
 
 # 2️⃣ FUNGSI LOAD DATA
 def load_data():
@@ -111,14 +109,36 @@ except Exception as e:
 # 4️⃣ BUILD TF-IDF
 vectorizer = TfidfVectorizer(
     ngram_range=(1, 2),
-    min_df=1,        # kata minimal muncul 1x
-    max_df=0.85,     # abaikan kata yang muncul di lebih dari 85% dokumen
-    sublinear_tf=True  # normalisasi frekuensi kata
+    min_df=1,
+    max_df=0.85,
+    sublinear_tf=True
 )
 question_vectors = vectorizer.fit_transform(questions)
 logger.info("✅ TF-IDF siap.")
 
 SIMILARITY_THRESHOLD = float(os.getenv("SIMILARITY_THRESHOLD", "0.45"))
+
+# ── Whitelist topik yang dilayani ────────────────────────────
+TOPIK_DILAYANI = [
+    "ktp", "kartu tanda penduduk", "e-ktp",
+    "kk", "kartu keluarga",
+    "akta kelahiran", "akta lahir", "kelahiran",
+    "akta kematian", "kematian", "meninggal",
+    "akta perkawinan", "nikah", "menikah", "perkawinan",
+    "akta perceraian", "cerai", "perceraian",
+    "kia", "kartu identitas anak",
+    "pindah", "domisili", "surat pindah", "skpwni",
+    "kedatangan", "lapor datang",
+    "disdukcapil", "dukcapil", "sidnok", "semarang",
+    "administrasi", "kependudukan", "pencatatan sipil",
+    "halo", "hai", "terima kasih", "makasih",
+    "selamat pagi", "selamat siang", "selamat malam",
+    "oke", "baik", "bye", "tolong", "bantu"
+]
+
+def is_topik_dilayani(teks: str) -> bool:
+    teks = teks.lower()
+    return any(topik in teks for topik in TOPIK_DILAYANI)
 
 # ── Kamus topik & keyword ────────────────────────────────────
 topik_keywords = {
@@ -130,7 +150,7 @@ topik_keywords = {
     "pindah": ["pindah", "domisili", "alamat baru"],
     "kia": ["kia", "kartu identitas anak"],
     "kedatangan": ["datang", "kedatangan", "lapor datang"],
-    "cerai" : ["cerai", "akta perceraian", "perceraian"]
+    "cerai": ["cerai", "akta perceraian", "perceraian"]
 }
 
 def topik_dari_pertanyaan(teks: str) -> list:
@@ -141,41 +161,31 @@ def topik_dari_pertanyaan(teks: str) -> list:
     return hasil
 
 def boost_score(raw_question: str, base_score: float, best_index: int) -> float:
-    """Tambahkan bobot jika kata topik ditemukan di pertanyaan user"""
-    
-    # Ambil topik dari pertanyaan user
     topik_user = topik_dari_pertanyaan(raw_question.lower())
-    
     if not topik_user:
         return base_score
-    
-    # Cek apakah jawaban terbaik mengandung keyword topik user
     pertanyaan_terbaik = questions[best_index].lower()
-    
     boost = 0.0
     for topik in topik_user:
         keywords_topik = topik_keywords.get(topik, [])
         if any(k in pertanyaan_terbaik for k in keywords_topik):
-            boost += 0.15  # tambah 0.15 per topik yang cocok
-    
-    boosted = min(base_score + boost, 1.0)  # maksimal 1.0
+            boost += 0.15
+    boosted = min(base_score + boost, 1.0)
     logger.info(f"Score boost: {base_score:.3f} → {boosted:.3f} (topik: {topik_user})")
     return boosted
 
 # 5️⃣ MODEL REQUEST & RESPONSE
-# ✅ PERUBAHAN: tambah field "message" agar kompatibel dengan frontend React
 class ChatRequest(BaseModel):
     question: str = ""
-    message: str = ""   # alias dari frontend React
+    message: str = ""
 
-# ✅ PERUBAHAN: tambah field "reply" agar bisa dibaca frontend React
 class ChatResponse(BaseModel):
     answer: str
-    reply: str          # alias untuk frontend React
+    reply: str
     confidence: float
 
 # 6️⃣ ENDPOINT CHAT
-MULTI_THRESHOLD = 0.30  # threshold lebih rendah untuk deteksi multi-topik
+MULTI_THRESHOLD = 0.30
 
 @app.post("/chat", response_model=ChatResponse)
 async def chat(request: ChatRequest):
@@ -187,6 +197,16 @@ async def chat(request: ChatRequest):
     if len(raw_question) > 500:
         raise HTTPException(status_code=400, detail="Pertanyaan terlalu panjang.")
 
+    # ✅ Cek whitelist topik
+    if not is_topik_dilayani(raw_question):
+        fallback = (
+            "Maaf, pertanyaan Anda di luar layanan yang tersedia. 🙏<br>"
+            "Saya hanya melayani informasi seputar layanan "
+            "Disdukcapil Kota Semarang seperti KTP, KK, Akta Kelahiran, "
+            "Akta Kematian, Akta Perkawinan, dan layanan kependudukan lainnya."
+        )
+        return ChatResponse(answer=fallback, reply=fallback, confidence=0.0)
+
     user_question = preprocess(raw_question)
     user_vector   = vectorizer.transform([user_question])
     similarities  = cosine_similarity(user_vector, question_vectors)[0]
@@ -194,15 +214,8 @@ async def chat(request: ChatRequest):
     best_score = float(similarities.max())
     best_index = int(similarities.argmax())
 
+    # Boost score berdasarkan topik
     best_score = boost_score(raw_question, best_score, best_index)
-
-    # DEBUG
-    top5 = sorted(enumerate(similarities), key=lambda x: x[1], reverse=True)[:5]
-    for idx, score in top5:
-        logger.info(f"  [{score:.3f}] {questions[idx][:60]}")
-
-    if best_score < SIMILARITY_THRESHOLD:
-        fallback = (...)
 
     # DEBUG
     top5 = sorted(enumerate(similarities), key=lambda x: x[1], reverse=True)[:5]
@@ -220,10 +233,8 @@ async def chat(request: ChatRequest):
     # ── Deteksi multi-topik ──────────────────────────────────
     kata_ganda = ["dan", "serta", "juga", "sekaligus", "dengan", "atau"]
     ada_kata_ganda = any(f" {k} " in f" {raw_question.lower()} " for k in kata_ganda)
-
     topik_user = topik_dari_pertanyaan(raw_question.lower())
     logger.info(f"Topik terdeteksi: {topik_user}")
-
     is_multi = ada_kata_ganda and len(topik_user) >= 2
 
     if is_multi:
@@ -263,37 +274,28 @@ async def health_check():
         "total_questions": len(questions),
         "threshold": SIMILARITY_THRESHOLD,
     }
+
 # 8️⃣ ENDPOINT TF-IDF
 @app.get("/tfidf")
 async def get_tfidf(question: str):
-    # Preprocess pertanyaan
     user_question = preprocess(question)
-    
-    # Transform ke vector
-    user_vector = vectorizer.transform([user_question])
-    
-    # Ambil feature names (kata-kata)
+    user_vector   = vectorizer.transform([user_question])
     feature_names = vectorizer.get_feature_names_out()
-    
-    # Ambil nilai TF-IDF yang tidak nol
+
     tfidf_scores = {}
     for idx, score in zip(user_vector.indices, user_vector.data):
         tfidf_scores[feature_names[idx]] = round(float(score), 4)
-    
-    # Urutkan dari nilai tertinggi
+
     tfidf_sorted = dict(
         sorted(tfidf_scores.items(), key=lambda x: x[1], reverse=True)
     )
 
-    # Hitung cosine similarity
     similarities  = cosine_similarity(user_vector, question_vectors)[0]
     best_score    = float(similarities.max())
     best_index    = int(similarities.argmax())
     best_question = questions[best_index]
-
-    # Boost score
     boosted_score = boost_score(question, best_score, best_index)
-    
+
     return {
         "question"        : question,
         "preprocessed"    : user_question,
