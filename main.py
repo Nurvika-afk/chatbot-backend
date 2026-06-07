@@ -7,6 +7,7 @@ import json, logging, re, os
 from sklearn.feature_extraction.text import TfidfVectorizer     
 from sklearn.metrics.pairwise import cosine_similarity          
 
+
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -30,19 +31,13 @@ if os.path.exists("dist"):
 INTENTS_PATH = "intents.json"
 
 # 1️⃣ FUNGSI PREPROCESS
+
 def preprocess(text: str) -> str:
     text = text.lower().strip()
     text = re.sub(r"[^\w\s]", "", text)
     text = re.sub(r"\s+", " ", text)
     return text  # ← tanpa filter stopwords
 
-# TF-IDF tetap pakai max_df untuk filter otomatis
-vectorizer = TfidfVectorizer(
-    ngram_range=(1, 2),
-    min_df=1,
-    max_df=0.85,     
-    sublinear_tf=True
-)
 # 2️⃣ FUNGSI LOAD DATA
 def load_data():
     if not os.path.exists(INTENTS_PATH):
@@ -177,10 +172,11 @@ async def chat(request: ChatRequest):
     best_score = float(similarities.max())
     best_index = int(similarities.argmax())
 
-# DEBUG — hapus setelah selesai testing
+    # DEBUG
     top5 = sorted(enumerate(similarities), key=lambda x: x[1], reverse=True)[:5]
     for idx, score in top5:
         logger.info(f"  [{score:.3f}] {questions[idx][:60]}")
+
     if best_score < SIMILARITY_THRESHOLD:
         fallback = (
             "Maaf, saya belum bisa menjawab pertanyaan tersebut. 🙏 "
@@ -191,19 +187,17 @@ async def chat(request: ChatRequest):
 
     # ── Deteksi multi-topik ──────────────────────────────────
     kata_ganda = ["dan", "serta", "juga", "sekaligus", "dengan", "atau"]
-    ada_kata_ganda = any(f" {k} " in f" {user_question} " for k in kata_ganda)
+    ada_kata_ganda = any(f" {k} " in f" {raw_question.lower()} " for k in kata_ganda)
 
-    topik_user = topik_dari_pertanyaan(user_question)
+    topik_user = topik_dari_pertanyaan(raw_question.lower())
     logger.info(f"Topik terdeteksi: {topik_user}")
 
     is_multi = ada_kata_ganda and len(topik_user) >= 2
 
     if is_multi:
-        # Cari jawaban terbaik untuk setiap topik yang disebut user
         seen_answers = []
         for topik in topik_user[:2]:
             keywords_topik = topik_keywords.get(topik, [])
-            # Cari index dengan score tertinggi yang mengandung keyword topik ini
             best_topik_score = -1
             best_topik_index = -1
             for i, q in enumerate(questions):
@@ -223,7 +217,6 @@ async def chat(request: ChatRequest):
             )
             return ChatResponse(answer=combined, reply=combined, confidence=best_score)
 
-    # Hanya satu topik — kembalikan jawaban terbaik
     return ChatResponse(
         answer=answers[best_index],
         reply=answers[best_index],
