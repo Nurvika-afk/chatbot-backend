@@ -263,3 +263,54 @@ async def health_check():
         "total_questions": len(questions),
         "threshold": SIMILARITY_THRESHOLD,
     }
+# 8️⃣ ENDPOINT TF-IDF
+@app.get("/tfidf")
+async def get_tfidf(question: str):
+    # Preprocess pertanyaan
+    user_question = preprocess(question)
+    
+    # Transform ke vector
+    user_vector = vectorizer.transform([user_question])
+    
+    # Ambil feature names (kata-kata)
+    feature_names = vectorizer.get_feature_names_out()
+    
+    # Ambil nilai TF-IDF yang tidak nol
+    tfidf_scores = {}
+    for idx, score in zip(user_vector.indices, user_vector.data):
+        tfidf_scores[feature_names[idx]] = round(float(score), 4)
+    
+    # Urutkan dari nilai tertinggi
+    tfidf_sorted = dict(
+        sorted(tfidf_scores.items(), key=lambda x: x[1], reverse=True)
+    )
+
+    # Hitung cosine similarity
+    similarities  = cosine_similarity(user_vector, question_vectors)[0]
+    best_score    = float(similarities.max())
+    best_index    = int(similarities.argmax())
+    best_question = questions[best_index]
+
+    # Boost score
+    boosted_score = boost_score(question, best_score, best_index)
+    
+    return {
+        "question"        : question,
+        "preprocessed"    : user_question,
+        "tfidf_scores"    : tfidf_sorted,
+        "total_features"  : len(feature_names),
+        "cosine_score"    : round(best_score, 4),
+        "boosted_score"   : round(boosted_score, 4),
+        "threshold"       : SIMILARITY_THRESHOLD,
+        "matched_question": best_question,
+        "akan_terjawab"   : boosted_score >= SIMILARITY_THRESHOLD
+    }
+
+# 9️⃣ ENDPOINT VOCABULARY
+@app.get("/tfidf/vocabulary")
+async def get_vocabulary():
+    feature_names = vectorizer.get_feature_names_out()
+    return {
+        "total_vocabulary": len(feature_names),
+        "vocabulary"      : list(feature_names)
+    }
