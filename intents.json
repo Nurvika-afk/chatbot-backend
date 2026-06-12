@@ -15,7 +15,8 @@
       "kia",
       "akta_nikah_cerai_non_muslim",
       "akta_kematian",
-      "surat_pernyataan"
+      "surat_pernyataan",
+      "SAPA"
     ]
   },
 
@@ -79,9 +80,7 @@
         "syarat membuat kartu keluarga baru",
         "buat kk baru setelah menikah",
         "persyaratan kartu keluarga baru",
-        "dokumen untuk buat kk",
-        "syarat membuat kk",
-        "syarat kk"
+        "dokumen untuk buat kk"
       ],
       "answer": {
         "text": "Persyaratan membuat Kartu Keluarga (KK) baru setelah menikah:",
@@ -179,14 +178,12 @@
       "subcategory": "membuat_akta",
       "keywords": ["kelahiran", "lahir", "bayi", "anak", "baru lahir", " lahir", " kelahiran"],
       "questions": [
-        "cara membuat akta kelahiran",
-        "syarat buat akta kelahiran bayi",
-        "dokumen untuk akta kelahiran",
-        "akta kelahiran anak baru lahir",
-        "cara daftar akta lahir",
-        "persyaratan akta kelahiran",
-        "syarat akta kelahiran",
-        "syarat akta lahir"
+        "cara membuat  kelahiran",
+        "syarat buat  kelahiran bayi",
+        "dokumen untuk  kelahiran",
+        " kelahiran anak baru lahir",
+        "cara daftar  lahir",
+        "persyaratan  kelahiran"
       ],
       "answer": {
         "text": "Persyaratan membuat Akta Kelahiran:",
@@ -279,9 +276,7 @@
         "dokumen pindah ke kota lain",
         "mau pindah keluar semarang apa saja syaratnya",
         "cara urus pindah domisili",
-        "persyaratan pindah keluar daerah",
-        "cara mengurus surat pindah",
-        "cara membuat surat pindah keluar kota"
+        "persyaratan pindah keluar daerah"
       ],
       "answer": {
         "text": "Persyaratan dan Prosedur mengurus Surat Keterangan Pindah Keluar (SKPWNI):",
@@ -316,8 +311,7 @@
         "pindah alamat dalam kota semarang",
         "pindah kecamatan di semarang caranya",
         "pindah dalam satu kota syaratnya apa",
-        "pindah kelurahan dokumen apa saja",
-        "cara membuat surat pindah"
+        "pindah kelurahan dokumen apa saja"
       ],
       "answer": {
         "text": "Persyaratan pindah antar kelurahan / kecamatan dalam Kota Semarang:",
@@ -358,8 +352,7 @@
         "dokumen untuk lapor datang",
         "baru datang dari luar kota cara lapor",
         "cara mengurus pindah datang",
-        "pendatang baru semarang syaratnya apa",
-        "cara mengurus kedatangan"
+        "pendatang baru semarang syaratnya apa"
       ],
       "answer": {
         "text": "Persyaratan lapor pindah datang ke Kota Semarang:",
@@ -448,7 +441,7 @@
           " Jika status PENGAJUAN DITOLAK maka perbaiki pengajuan dengan klik tombol revisi pada fitur pengajuan dan tambahkan dokumen atau data yang direvisi sesuai dengan keterangan penolakan",
           " Jika status sudah SIAP DIAMBIL,KK baru diterbitkan secara digital (barcode) melalui email untuk diunduh dan dicetak sendiri"
         ],
-        "note": "Jika perubahan karena kesalahan penulisan (typo), cukup upload dokumen pendukung seperti : buku nikah, akta kelahiran, dll tanpa penetapan pengadilan."
+        "note": "Jika perubahan karena kesalahan penulisan (typo), cukup bawa dokumen pendukung tanpa penetapan pengadilan."
       }
     },
 
@@ -698,19 +691,15 @@
       "subcategory": "membuat_akta_kematian",
       "keywords": [" kematian", "surat kematian", "meninggal", "wafat", "mati", "almarhum"],
       "questions": [
-        "syarat akta kematian",
-        "cara membuat akta kematian",
-        "persyaratan akta kematian",
-        "dokumen akta kematian",
-        "urus akta kematian",
-        "buat akta kematian",
-        "akta kematian syaratnya apa",
-        "cara urus surat kematian",
-        "syarat surat kematian",
-        "persyaratan surat kematian",
+        "cara buat akta kematian",
+        "syarat membuat surat kematian",
+        "cara mengurus akta kematian",
         "dokumen untuk akta kematian",
-        "bagaimana membuat akta kematian",
-        "syarat akta kematian"
+        "buat  kematian",
+        "anggota keluarga meninggal harus urus apa",
+        "persyaratan  kematian",
+        "cara lapor kematian ke dukcapil",
+        "surat keterangan kematian syaratnya apa"
       ],
       "answer": {
         "text": "Persyaratan pembuatan Akta Kematian:",
@@ -852,7 +841,128 @@
         ],
         "note": " Download dan Print Suratnya Disini ya <a href='https://sidnok.semarangkota.go.id/get-berkas/1740727518' target='_blank'>Surat Pernyatan Tidak Keberatan Numpang KK</a>"
   }
+  },
+  {
+    "id": "SAPA-001",
+      "category": "sapaan",
+      "subcategory": "halo",
+      "keywords": ["halo", "hai", "hi", "hey", "hei"],
+      "questions": [
+        "halo", "hai", "hi", "hey", "hei",
+        "halo semabot", "hai semabot",
+        "selamat datang", "permisi"
+  ],
+      "answer": {
+        "text": "Halo! Selamat datang di SemaBot Disdukcapil Kota Semarang 👋",
+        "list": [],
+        "note": ""
   }
-
+},
+{
+    "id": "SAPA-002",
+      "category": "sapaan",
+      "subcategory": "selamat_pagi",
+      "keywords": ["pagi", "selamat pagi", "good morning"],
+      "questions": [
+        "selamat pagi", "pagi", "good morning",
+        "selamat pagi semabot"
+  ],
+      "answer": {
+        "text": "Selamat pagi! 🌅 Semoga hari Anda menyenangkan. Ada yang bisa saya bantu?",
+        "list": [],
+        "note": ""
+  }
+},
+{
+    "id": "SAPA-003",
+      "category": "sapaan",
+      "subcategory": "selamat_siang",
+      "keywords": ["siang", "selamat siang"],
+      "questions": [
+        "selamat siang", "siang", "selamat siang semabot"
+  ],
+      "answer": {
+        "text": "Selamat siang! ☀️ Ada yang bisa saya bantu hari ini?",
+        "list": [],
+        "note": ""
+  }
+},
+{
+    "id": "SAPA-004",
+      "category": "sapaan",
+      "subcategory": "selamat_malam",
+      "keywords": ["malam", "selamat malam", "good night"],
+      "questions": [
+        "selamat malam", "malam", "selamat malam semabot"
+  ],
+      "answer": {
+        "text": "Selamat malam! 🌙 Ada yang bisa saya bantu?",
+        "list": [],
+        "note": ""
+  }
+},
+{
+    "id": "SAPA-005",
+      "category": "sapaan",
+      "subcategory": "terima_kasih",
+      "keywords": ["terima kasih", "terimakasih", "makasih", "thanks", "thank you"],
+      "questions": [
+        "terima kasih", "terimakasih", "makasih", "thanks",
+        "thank you", "thx", "trims", "tengkyu",
+        "terima kasih semabot", "makasih ya"
+  ],
+      "answer": {
+        "text": "Sama-sama! 😊 Senang bisa membantu Anda.",
+        "list": [],
+        "note": "Jika ada pertanyaan lain seputar layanan Disdukcapil, jangan ragu untuk bertanya kembali ya!"
+  }
+},
+{
+  "id": "SAPA-006",
+  "category": "sapaan",
+  "subcategory": "oke_baik",
+  "keywords": ["oke", "ok", "baik", "siap", "noted", "paham"],
+  "questions": [
+    "oke", "ok", "okay", "baik", "siap",
+    "noted", "paham", "mengerti", "oke makasih",
+    "ok terima kasih", "baik terima kasih"
+  ],
+  "answer": {
+    "text": "Baik! 👍 Jika ada pertanyaan lain, saya siap membantu.",
+    "list": [],
+    "note": ""
+  }
+},
+{
+    "id": "SAPA-007",
+      "category": "sapaan",
+      "subcategory": "perpisahan",
+      "keywords": ["dadah", "bye", "sampai jumpa", "selamat tinggal"],
+      "questions": [
+        "dadah", "bye", "bye bye", "sampai jumpa",
+        "selamat tinggal", "goodbye", "good bye",
+        "pamit dulu", "tutup dulu"
+  ],
+      "answer": {
+        "text": "Sampai jumpa! 👋 Semoga informasi yang diberikan bermanfaat.",
+        "list": [],
+        "note": "Jangan ragu untuk kembali jika membutuhkan informasi layanan Disdukcapil Kota Semarang."
+  }
+},
+{
+    "id": "SAPA-008",
+      "category": "sapaan",
+      "subcategory": "bantuan",
+      "keywords": ["tolong", "bantu", "bantuan", "help"],
+      "questions": [
+        "tolong bantu", "butuh bantuan", "help",
+        "bisa bantu", "minta bantuan", "perlu bantuan"
+  ],
+      "answer": {
+        "text": "Tentu, saya siap membantu! 🙏 Silakan sampaikan pertanyaan Anda seputar layanan Disdukcapil Kota Semarang.",
+        "list": [],
+        "note": ""
+  }
+}
   ]
 }
