@@ -133,7 +133,8 @@ TOPIK_DILAYANI = [
     "administrasi", "kependudukan", "pencatatan sipil",
     "halo", "hai", "terima kasih", "makasih",
     "selamat pagi", "selamat siang", "selamat malam",
-    "oke", "baik", "bye", "tolong", "bantu","jam", "buka", "tutup", "operasional", "kantor", "hari", "pelayanan"
+    "oke", "baik", "bye", "tolong", "bantu","jam", "buka", "tutup", "operasional", "kantor", "hari", "pelayanan",
+    "rumah sendiri", "surat pernyataan rumah sendiri","kontrak", "surat pernyataan kontrak rumah","numpang kk", "surat pernyataan numpang kk"
 ]
 
 def is_topik_dilayani(teks: str) -> bool:
@@ -152,7 +153,7 @@ topik_keywords = {
     "kedatangan": ["datang", "kedatangan", "lapor datang"],
     "cerai": ["cerai", "akta perceraian", "perceraian"],
     "jam_operasional": ["jam", "buka", "tutup", "operasional", "kantor", "hari", "pelayanan"],
-    "surat_pernyataan": ["rumah sendiri", "surat pernyataan rumah sendiri", "siapa", "membuat", "menandatangani","kontrak", "surat pernyataan kontrak rumah","numpang kk", "surat pernyataan numpang kk",]
+    "surat_pernyataan": ["rumah sendiri", "surat pernyataan rumah sendiri", "siapa", "membuat", "menandatangani","kontrak", "surat pernyataan kontrak rumah","numpang kk", "surat pernyataan numpang kk"]
 }
 
 def topik_dari_pertanyaan(teks: str) -> list:
