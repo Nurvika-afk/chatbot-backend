@@ -151,7 +151,8 @@ topik_keywords = {
     "kia": ["kia", "kartu identitas anak"],
     "kedatangan": ["datang", "kedatangan", "lapor datang"],
     "cerai": ["cerai", "akta perceraian", "perceraian"],
-    "jam_operasional": ["jam", "buka", "tutup", "operasional", "kantor", "hari", "pelayanan"]
+    "jam_operasional": ["jam", "buka", "tutup", "operasional", "kantor", "hari", "pelayanan"],
+    "surat_pernyataan": ["rumah sendiri", "surat pernyataan rumah sendiri", "siapa", "membuat", "menandatangani","kontrak", "surat pernyataan kontrak rumah","numpang kk", "surat pernyataan numpang kk",]
 }
 
 def topik_dari_pertanyaan(teks: str) -> list:
