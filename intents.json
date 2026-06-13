@@ -16,7 +16,8 @@
       "akta_nikah_cerai_non_muslim",
       "akta_kematian",
       "surat_pernyataan",
-      "SAPA"
+      "SAPA",
+      "si_d'nok"
     ]
   },
 
@@ -206,7 +207,7 @@
           " Jika status PENGAJUAN DITOLAK maka perbaiki pengajuan dengan klik tombol revisi pada fitur pengajuan dan tambahkan dokumen atau data yang direvisi sesuai dengan keterangan penolakan",
           " Jika status sudah SIAP AMBIL, Akta Kelahiran dan KIA diterbitkan secara digital (barcode) dikirim melalui email"
         ],
-        "note": "Akta kelahiran anak gratis dan KIA hanya dapat dicetak di Kantor Disdukcapil atau Unit layanan terdekat dengan menunjukkan barcode."
+        "note": "<a href='https://drive.google.com/file/d/1n06OweRZRXeDCj0-_Vd_XYmW_xxoIJh9/view' target='_blank'>Panduan Pengajuan Akta Kelahiran</a>. Akta kelahiran anak gratis dan KIA hanya dapat dicetak di Kantor Disdukcapil atau Unit layanan terdekat dengan menunjukkan barcode."
       }
     },
 
@@ -297,7 +298,7 @@
           " Jika status PENGAJUAN DITOLAK maka perbaiki pengajuan dengan klik tombol revisi pada fitur pengajuan dan tambahkan dokumen atau data yang direvisi sesuai dengan keterangan penolakan",
           " Jika status sudah SIAP AMBIL, SKPWNI/KK  diterbitkan secara digital melalui email untuk dicetak secara mandiri"
         ],
-        "note": "Surat pindah keluar diurus di kantor kelurahan setempat. Setelah mendapat SKPWNI, segera lapor ke Dukcapil tujuan paling lambat 30 hari."
+        "note": "<a href='https://drive.google.com/file/d/1tQDF_fx4Sg1AqZOnjEwzTUEibyQoyw04/view' target='_blank'>Panduan Pengajuan Pindah Keluar</a>. Setelah mendapat SKPWNI, segera lapor ke Dukcapil tujuan paling lambat 30 hari."
       }
     },
 
@@ -335,7 +336,7 @@
           " Jika status PENGAJUAN DITOLAK maka perbaiki pengajuan dengan klik tombol revisi pada fitur pengajuan dan tambahkan dokumen atau data yang direvisi sesuai dengan keterangan penolakan",
           " Jika status sudah SIAP AMBIL, KK  diterbitkan secara digital melalui email untuk dicetak secara mandiri"
         ],
-        "note": "Setelah mendapat KK baru, wajib datang ke kantor Disdukcapil atau Unit layanan Adminduk terdekat untuk mencetak KTP baru."
+        "note": "<a href='https://drive.google.com/file/d/1tQDF_fx4Sg1AqZOnjEwzTUEibyQoyw04/view' target='_blank'>Panduan Pengajuan Pindah Keluar</a>. Setelah mendapat KK baru, wajib datang ke kantor Disdukcapil atau Unit layanan Adminduk terdekat untuk mencetak KTP baru."
       }
     },
 
@@ -378,7 +379,7 @@
           " Jika status PENGAJUAN DITOLAK maka perbaiki pengajuan dengan klik tombol revisi pada fitur pengajuan dan tambahkan dokumen atau data yang direvisi sesuai dengan keterangan penolakan",
           " Jika status sudah SIAP AMBIL, KK  diterbitkan secara digital melalui email untuk dicetak secara mandiri"
         ],
-        "note": "Lapor datang dilakukan paling lambat 30 hari setelah tiba di Kota Semarang. KTP baru akan diterbitkan setelah KK yang baru sudah jadi."
+        "note": "<a href='<a href='https://drive.google.com/file/d/1L08-aNqO5bqZykuuJneNMiEdSh0CS6hC/view' target='_blank'>Panduan Pengajuan Kedatangan</a>'. KTP baru akan diterbitkan setelah KK yang baru sudah jadi."
       }
     },
 
@@ -441,7 +442,7 @@
           " Jika status PENGAJUAN DITOLAK maka perbaiki pengajuan dengan klik tombol revisi pada fitur pengajuan dan tambahkan dokumen atau data yang direvisi sesuai dengan keterangan penolakan",
           " Jika status sudah SIAP DIAMBIL,KK baru diterbitkan secara digital (barcode) melalui email untuk diunduh dan dicetak sendiri"
         ],
-        "note": "Jika perubahan karena kesalahan penulisan (typo), cukup bawa dokumen pendukung tanpa penetapan pengadilan."
+        "note": "<a href='https://drive.google.com/file/d/1F9j7B-jvMCGNcUgM1JbMQ-sJHzZ-qwQP/view' target='_blank'>Panduan Perubahan Biodata KK</a>. Jika perubahan karena kesalahan penulisan (typo), cukup bawa dokumen pendukung tanpa penetapan pengadilan."
       }
     },
 
@@ -479,7 +480,7 @@
           " Jika status PENGAJUAN DITOLAK maka perbaiki pengajuan dengan klik tombol revisi pada fitur pengajuan dan tambahkan dokumen atau data yang direvisi sesuai dengan keterangan penolakan",
           " Jika status sudah SIAP DIAMBIL,KK baru diterbitkan secara digital (barcode) melalui email untuk diunduh dan dicetak sendiri"
         ],
-        "note": "Pengajuan dilakukan secara Online ya, Dilihat dulu prosedur pengajuan diatas okeyyyyy."
+        "note": "<a href='https://drive.google.com/file/d/1F9j7B-jvMCGNcUgM1JbMQ-sJHzZ-qwQP/view' target='_blank'>Panduan Perubahan Biodata KK</a>.Pengajuan dilakukan secara Online ya, Dilihat dulu prosedur pengajuan diatas okeyyyyy."
       }
     },
 
@@ -517,7 +518,7 @@
           " Jika status PENGAJUAN DITOLAK maka perbaiki pengajuan dengan klik tombol revisi pada fitur pengajuan dan tambahkan dokumen atau data yang direvisi sesuai dengan keterangan penolakan",
           " Jika status sudah SIAP DIAMBIL,KK baru diterbitkan secara digital (barcode) melalui email untuk diunduh dan dicetak sendiri"
         ],
-        "note": "Pengajuan dilakukan secara Online ya, Dilihat dulu prosedur pengajuan diatas okeyyyyy."
+        "note": "<a href='https://drive.google.com/file/d/1F9j7B-jvMCGNcUgM1JbMQ-sJHzZ-qwQP/view' target='_blank'>Panduan Perubahan Biodata KK</a>.Pengajuan dilakukan secara Online ya, Dilihat dulu prosedur pengajuan diatas okeyyyyy."
       }
     },
 
@@ -557,7 +558,7 @@
           " Jika status PENGAJUAN DITOLAK maka perbaiki pengajuan dengan klik tombol revisi pada fitur pengajuan dan tambahkan dokumen atau data yang direvisi sesuai dengan keterangan penolakan",
           " Jika status sudah SIAP DIAMBIL, pemohon datang ke Kantor Disdukcapil atau Unit layanan terdekat untuk cetak KIA"
         ],
-        "note": "KIA terbagi dua: KIA untuk anak 0-4 tahun (tanpa foto) dan KIA untuk anak 5-17 tahun (dengan foto). KIA gratis dan berlaku hingga anak berusia 17 tahun."
+        "note": "<a href='https://drive.google.com/file/d/1-aBr1KlDyPPvr4WgbE8rgK7Jod7CYEQg/view' target='_blank'>Panduan Pengajuan KIA</a>. KIA terbagi dua: KIA untuk anak 0-4 tahun (tanpa foto) dan KIA untuk anak 5-17 tahun (dengan foto). KIA gratis dan berlaku hingga anak berusia 17 tahun."
       }
     },
 
@@ -595,7 +596,7 @@
           " Jika status PENGAJUAN DITOLAK maka perbaiki pengajuan dengan klik tombol revisi pada fitur pengajuan dan tambahkan dokumen atau data yang direvisi sesuai dengan keterangan penolakan",
           " Jika status sudah SIAP DIAMBIL, pemohon datang ke Kantor Disdukcapil atau Unit layanan terdekat untuk cetak KIA"
         ],
-        "note": "Pengurusan dilakukan di Dinas Dukcapil Kota Semarang secara gratis."
+        "note": "<a href='https://drive.google.com/file/d/1-aBr1KlDyPPvr4WgbE8rgK7Jod7CYEQg/view' target='_blank'>Panduan Pengajuan KIA</a>. Cetak KIA dilakukan di Dinas Dukcapil Kota Semarang secara gratis."
       }
     },
 
@@ -642,7 +643,7 @@
           " Jika status PENGAJUAN DITOLAK maka perbaiki pengajuan dengan klik tombol revisi pada fitur pengajuan dan tambahkan dokumen atau data yang direvisi sesuai dengan keterangan penolakan",
           " Jika status sudah DIPROSES, pemohon akan dihubungi oleh petugas Disdukcapil untuk informasi tanggal pencatatan perkawinan. Setelah selesai, Akta Perkawinan dikirim secara digital (barcode) melalui email"
         ],
-        "note": "Pastikan email dan nomor telepon yang didaftarkan pada akun Si D'nOK merupakan email dan nomor telepon yang aktif agar bisa menerima dokumen pengajuan."
+        "note": "<a href='https://drive.google.com/drive/u/0/folders/1lV6btwezItj0XFHWmwz8U7dxuulpT678' target='_blank'>Panduan Pengajuan Akta Nikah</a>. Pastikan email dan nomor telepon yang didaftarkan pada akun Si D'nOK merupakan email dan nomor telepon yang aktif agar bisa menerima dokumen pengajuan."
       }
     },
 
@@ -681,7 +682,7 @@
           " Jika status PENGAJUAN DITOLAK maka perbaiki pengajuan dengan klik tombol revisi pada fitur pengajuan dan tambahkan dokumen atau data yang direvisi sesuai dengan keterangan penolakan",
           " Jika status sudah SIAP DIAMBIL, Akta Perceraian dan KK baru diterbitkan secara digital (barcode) melalui email untuk diunduh dan dicetak secara mandiri."
         ],
-        "note": "Pastikan email dan nomor telepon yang didaftarkan pada akun Si D'nOK merupakan email dan nomor telepon yang aktif agar bisa menerima dokumen pengajuan."
+        "note": "<a href='https://drive.google.com/drive/u/0/folders/1N19MqnQ4pnn3Xm2GjQNQHo11CSKtKQS6' target='_blank'>. Panduan Pengajuan Akta Cerai</a>. Pastikan email dan nomor telepon yang didaftarkan pada akun Si D'nOK merupakan email dan nomor telepon yang aktif agar bisa menerima dokumen pengajuan."
       }
     },
 
@@ -724,7 +725,7 @@
           " Jika status PENGAJUAN DITOLAK maka perbaiki pengajuan dengan klik tombol revisi pada fitur pengajuan dan tambahkan dokumen atau data yang direvisi sesuai dengan keterangan penolakan",
           " Jika status sudah SIAP DIAMBIL, pemohon wajib datang ke kantor Disdukcapil atau Unit layanan Adminduk terdekat dengan membawa semua dokumen yg diuanggah."
         ],
-        "note": "Akta kematian penting untuk mengurus warisan, tunjangan, dan penghapusan data almarhum dari KK. Pengurusan dilakukan di Dinas Dukcapil Kota Semarang."
+        "note": "<a href='https://drive.google.com/file/d/1jtkaTa0fEaLdP2HyR8yGnfjJMTg-rHBO/view' target='_blank'>Panduan Pengajuan Akta Kematian</a>. Pengurusan dilakukan secara online."
       }
     },
 
@@ -750,7 +751,7 @@
           "KTP pelapor",
           "Surat pengantar RT/RW domisili almarhum"
         ],
-        "note": "Akta kematian tetap diurus di Dinas Dukcapil sesuai domisili almarhum / almarhumah."
+        "note": "Untuk panduan lengkapnya bisa lihat di Link ini Yaaa <a href='https://drive.google.com/file/d/1jtkaTa0fEaLdP2HyR8yGnfjJMTg-rHBO/view' target='_blank'>Panduan Pengajuan Akta Kematian</a>."
       }
     },
   {
@@ -963,6 +964,35 @@
         "list": [],
         "note": ""
   }
-}
+},
+ {
+      "id": "SIDNOK-001",
+      "category": "si_d'nok",
+      "subcategory": "registrasi_akun",
+      "keywords": ["si d'nok", "resgitrasi akun", "daftar si d'nok", "akun baru", "akun si d'nok", "ganti password", "ganti email", "lupa password"],
+      "questions": [
+        "cara membuat akun si d'nok baru",
+        "cara resgitrasi akun si d'nok",
+        "cara membuat si d'nok",
+        "cara mengganti password si d'nok",
+        "cara ganti email si d'nok",
+        "cara aktivasi IKD",
+        "cara buat si d'nok",
+        "cara buat akun IKD",
+        "restrasi akun Si d'nok",
+        "bagaimana jika lupa password akun Si D'nok"
+        
+      ],
+      "answer": {
+        "text": "Berikut ini merupakan cara registrasi akun Si D'nOK dan akun IKD:",
+        "list": [
+          " <a href='https://drive.google.com/file/d/1ETbc3rNeHANduMiVLurEgd6llu7cJJSU/view?usp=drivesdk' target='_blank'>Tutorial Resgistrasi Akun Si D'nOK</a>",
+          " <a href='https://drive.google.com/file/d/111Uj83cHlgwiz3gDvHM9pGDCWQnH2IsM/view?usp=drivesdk' target='_blank'>Tutorial Reset/Lupa Password Akun Si D'nOK</a>",
+          " <a href='https://drive.google.com/file/d/1TlNt6fmrGgVQczIY6zp37GYx8r-N_CNy/view?usp=drivesdk' target='_blank'>Tutorial Mengubah Email dan Nomor Hp di Akun Si D'nOK</a>",
+          " <a href='https://drive.google.com/file/d/1ooBMrXYgZ__5vz4NOxyOssh9T5UqjOkn/view?usp=drivesdk' target='_blank'>Tutorial Aktivasi Akun IKD</a>"
+        ],
+        "note": "Klik Link diatas untuk melihat tutorial lengkapnya yaaa"
+      }
+    }
   ]
 }
