@@ -6,6 +6,7 @@ from pydantic import BaseModel
 import json, logging, re, os
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+from spellchecker import SpellChecker
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -27,16 +28,62 @@ if os.path.exists("dist"):
     async def serve_frontend():
         return FileResponse("dist/index.html")
 
+# ── Spellchecker Setup ───────────────────────────────────────
+spell = SpellChecker(language=None)
+
+kamus_dukcapil = [
+    # Dokumen utama
+    "ktp", "ektp", "kartu", "tanda", "penduduk",
+    "kk", "keluarga",
+    "akta", "kelahiran", "lahir",
+    "kematian", "meninggal",
+    "perkawinan", "nikah", "menikah",
+    "perceraian", "cerai",
+    "kia", "identitas", "anak",
+    # Layanan
+    "pindah", "domisili", "surat", "skpwni",
+    "kedatangan", "lapor",
+    "kontrak", "numpang",
+    # Institusi
+    "disdukcapil", "dukcapil", "sidnok", "semarang",
+    "administrasi", "kependudukan", "pencatatan", "sipil",
+    # Operasional
+    "jam", "buka", "tutup", "operasional", "kantor",
+    "hari", "pelayanan",
+    # Digital
+    "ikd", "digital", "password", "reset", "email", "nomor",
+    # Sapaan
+    "halo", "hai", "terima", "makasih", "selamat",
+    "tolong", "bantu",
+    # Kata kerja umum
+    "syarat", "cara", "prosedur", "biaya", "daftar",
+    "buat", "urus", "ganti", "ubah", "fotokopi",
+    "rumah", "pernyataan", "sendiri",
+]
+spell.word_frequency.load_words(kamus_dukcapil)
+
+def koreksi_typo(text: str) -> str:
+    words = text.split()
+    corrected = []
+    for word in words:
+        if len(word) > 3:
+            correction = spell.correction(word)
+            corrected.append(correction if correction else word)
+        else:
+            corrected.append(word)
+    result = " ".join(corrected)
+    if result != text:
+        logger.info(f"Koreksi typo: '{text}' → '{result}'")
+    return result
+
 INTENTS_PATH = "intents.json"
 
-# 1️⃣ FUNGSI PREPROCESS
 def preprocess(text: str) -> str:
     text = text.lower().strip()
     text = re.sub(r"[^\w\s]", "", text)
     text = re.sub(r"\s+", " ", text)
     return text
 
-# 2️⃣ FUNGSI LOAD DATA
 def load_data():
     if not os.path.exists(INTENTS_PATH):
         raise FileNotFoundError(f"{INTENTS_PATH} tidak ditemukan.")
@@ -99,14 +146,12 @@ def load_data():
     logger.info(f"✅ Loaded {len(all_questions)} variasi pertanyaan")
     return all_questions, all_answers
 
-# 3️⃣ PANGGIL LOAD DATA
 try:
     questions, answers = load_data()
 except Exception as e:
     logger.critical(f"Gagal load data: {e}")
     raise
 
-# 4️⃣ BUILD TF-IDF
 vectorizer = TfidfVectorizer(
     ngram_range=(1, 2),
     min_df=1,
@@ -118,7 +163,6 @@ logger.info("✅ TF-IDF siap.")
 
 SIMILARITY_THRESHOLD = float(os.getenv("SIMILARITY_THRESHOLD", "0.45"))
 
-# ── Whitelist topik yang dilayani ────────────────────────────
 TOPIK_DILAYANI = [
     "ktp", "kartu tanda penduduk", "e-ktp",
     "kk", "kartu keluarga",
@@ -133,16 +177,19 @@ TOPIK_DILAYANI = [
     "administrasi", "kependudukan", "pencatatan sipil",
     "halo", "hai", "terima kasih", "makasih",
     "selamat pagi", "selamat siang", "selamat malam",
-    "oke", "baik", "bye", "tolong", "bantu","jam", "buka", "tutup", "operasional", "kantor", "hari", "pelayanan",
-    "rumah sendiri", "surat pernyataan rumah sendiri","kontrak", "surat pernyataan kontrak rumah","numpang kk", "surat pernyataan numpang kk",
-    "si d'nok", "ikd", "identitas kependudukan digital", "reset password", "lupa password", "ubah email", "ubah nomor"
+    "oke", "baik", "bye", "tolong", "bantu",
+    "jam", "buka", "tutup", "operasional", "kantor", "hari", "pelayanan",
+    "rumah sendiri", "surat pernyataan rumah sendiri",
+    "kontrak", "surat pernyataan kontrak rumah",
+    "numpang kk", "surat pernyataan numpang kk",
+    "si d'nok", "ikd", "identitas kependudukan digital",
+    "reset password", "lupa password", "ubah email", "ubah nomor"
 ]
 
 def is_topik_dilayani(teks: str) -> bool:
     teks = teks.lower()
     return any(topik in teks for topik in TOPIK_DILAYANI)
 
-# ── Kamus topik & keyword ────────────────────────────────────
 topik_keywords = {
     "kematian": ["kematian", "meninggal", "wafat", "mati"],
     "kelahiran": ["kelahiran", "lahir", "bayi"],
@@ -167,27 +214,21 @@ def topik_dari_pertanyaan(teks: str) -> list:
 
 def boost_score(raw_question: str, base_score: float, best_index: int) -> float:
     topik_user = topik_dari_pertanyaan(raw_question.lower())
-    
     if not topik_user:
         return base_score
-
     pertanyaan_terbaik = questions[best_index].lower()
-    
     boost = 0.0
     for topik in topik_user:
         keywords_topik = topik_keywords.get(topik, [])
         if any(k in pertanyaan_terbaik for k in keywords_topik):
             boost += 0.15
-
     boosted = min(base_score + boost, 1.0)
     logger.info(f"Score boost: {base_score:.3f} → {boosted:.3f} (topik: {topik_user})")
     return boosted
 
 def get_best_index_for_topik(topik_user: list, similarities) -> int:
-    """Cari index jawaban terbaik yang benar-benar sesuai topik user"""
     best_score = -1
     best_idx   = -1
-
     for topik in topik_user:
         keywords_topik = topik_keywords.get(topik, [])
         for i, q in enumerate(questions):
@@ -195,10 +236,8 @@ def get_best_index_for_topik(topik_user: list, similarities) -> int:
                 if similarities[i] > best_score:
                     best_score = similarities[i]
                     best_idx   = i
-
     return best_idx
 
-# 5️⃣ MODEL REQUEST & RESPONSE
 class ChatRequest(BaseModel):
     question: str = ""
     message: str = ""
@@ -208,7 +247,6 @@ class ChatResponse(BaseModel):
     reply: str
     confidence: float
 
-# 6️⃣ ENDPOINT CHAT
 MULTI_THRESHOLD = 0.30
 
 @app.post("/chat", response_model=ChatResponse)
@@ -221,7 +259,9 @@ async def chat(request: ChatRequest):
     if len(raw_question) > 500:
         raise HTTPException(status_code=400, detail="Pertanyaan terlalu panjang.")
 
-    # ✅ Cek whitelist topik
+    # ✅ Koreksi typo sebelum diproses
+    raw_question = koreksi_typo(raw_question)
+
     if not is_topik_dilayani(raw_question):
         fallback = (
             "Maaf, pertanyaan Anda di luar layanan yang tersedia. 🙏<br>"
@@ -238,20 +278,18 @@ async def chat(request: ChatRequest):
     best_score = float(similarities.max())
     best_index = int(similarities.argmax())
 
-    # ✅ Cek topik user
     topik_user = topik_dari_pertanyaan(raw_question.lower())
 
-    # ✅ Jika topik terdeteksi, cari index yang benar-benar sesuai topik
     if topik_user:
         topik_index = get_best_index_for_topik(topik_user, similarities)
         if topik_index >= 0:
-            best_index = topik_index  # ← override index dengan yang sesuai topik
+            best_index = topik_index
             best_score = float(similarities[best_index]) + 0.15
             best_score = min(best_score, 1.0)
             logger.info(f"Topik override: index={best_index}, score={best_score:.3f}")
 
     best_score = boost_score(raw_question, best_score, best_index)
-    # DEBUG
+
     top5 = sorted(enumerate(similarities), key=lambda x: x[1], reverse=True)[:5]
     for idx, score in top5:
         logger.info(f"  [{score:.3f}] {questions[idx][:60]}")
@@ -264,7 +302,6 @@ async def chat(request: ChatRequest):
         )
         return ChatResponse(answer=fallback, reply=fallback, confidence=best_score)
 
-    # ── Deteksi multi-topik ──────────────────────────────────
     kata_ganda = ["dan", "serta", "juga", "sekaligus", "dengan", "atau"]
     ada_kata_ganda = any(f" {k} " in f" {raw_question.lower()} " for k in kata_ganda)
     topik_user = topik_dari_pertanyaan(raw_question.lower())
@@ -300,7 +337,6 @@ async def chat(request: ChatRequest):
         confidence=best_score,
     )
 
-# 7️⃣ HEALTH CHECK
 @app.get("/health")
 async def health_check():
     return {
@@ -309,7 +345,6 @@ async def health_check():
         "threshold": SIMILARITY_THRESHOLD,
     }
 
-# 8️⃣ ENDPOINT TF-IDF
 @app.get("/tfidf")
 async def get_tfidf(question: str):
     user_question = preprocess(question)
@@ -342,7 +377,6 @@ async def get_tfidf(question: str):
         "akan_terjawab"   : boosted_score >= SIMILARITY_THRESHOLD
     }
 
-# 9️⃣ ENDPOINT VOCABULARY
 @app.get("/tfidf/vocabulary")
 async def get_vocabulary():
     feature_names = vectorizer.get_feature_names_out()
