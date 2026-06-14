@@ -494,7 +494,8 @@
         "ganti data pekerjaan di kartu keluarga",
         "update data pendidikan di kk",
         "perubahan pekerjaan di kk",
-        "cara ubah status pendidikan di kartu keluarga"
+        "cara ubah status pendidikan di kartu keluarga",
+        "ubah data karena perubahan pendidikan atau pekerjaan"
       ],
       "answer": {
         "text": "Persyaratan perubahan data pendidikan atau pekerjaan di KK:",
