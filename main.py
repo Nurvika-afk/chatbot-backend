@@ -309,7 +309,7 @@ AMBIGUOUS_TOPICS = {
         "options": [
             "Ubah data karena pindah alamat",
             "Ubah data karena perubahan nama",
-            "Ubah data karena tambah anggota keluarga",
+            "Ubah data karena perubahan status perkawinan",
             "Ubah data karena perubahan pekerjaan atau pendidikan",
         ],
     },
