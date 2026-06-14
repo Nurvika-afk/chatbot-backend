@@ -217,7 +217,7 @@ topik_keywords = {
     "kia": ["kia", "kartu identitas anak"],
     "kedatangan": ["datang", "kedatangan", "lapor datang"],
     "cerai": ["cerai", "akta perceraian", "perceraian"],
-    "biodata": ["ganti", "nama", "biodata", "salah nama", "perbaikan data","status", "perkawinan", "menikah", "cerai", "janda", "duda","pendidikan", "pekerjaan", "profesi", "ubah", "update", "kk"]
+    "biodata": ["ganti", "nama", "biodata", "salah nama", "perbaikan data","status", "perkawinan", "menikah", "cerai", "janda", "duda","pendidikan", "pekerjaan", "profesi", "ubah", "update", "kk"],
     "jam_operasional": ["jam", "buka", "tutup", "operasional", "kantor", "hari", "pelayanan"],
     "surat_pernyataan": ["rumah sendiri", "surat pernyataan rumah sendiri", "siapa", "membuat", "menandatangani","kontrak", "surat pernyataan kontrak rumah","numpang kk", "surat pernyataan numpang kk"],
     "si_d'nok": ["si d'nok", "ubah email", "ubah password", "ikd", "identitas kependudukan digital", "reset password", "lupa password", "ubah email", "ubah nomor"],
