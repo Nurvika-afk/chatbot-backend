@@ -63,6 +63,17 @@ kamus_dukcapil = [
     # Perubahan data KK
     "perubahan", "biodata", "data", "anggota", "kepala",
     "alamat", "pekerjaan", "pendidikan", "status", "tambah",
+    # Kata sambung / stopwords umum (agar tidak salah dikoreksi
+    # menjadi kata domain seperti "akta", contoh: "atau" -> "akta")
+    "atau", "dan", "dengan", "yang", "untuk", "dari", "pada",
+    "akan", "adalah", "karena", "agar", "supaya", "jika", "kalau",
+    "saya", "anda", "kami", "kita", "mereka", "ingin", "mau",
+    "bisa", "dapat", "harus", "perlu", "sudah", "belum", "tidak",
+    "apa", "apakah", "bagaimana", "dimana", "kapan", "siapa",
+    "ini", "itu", "ada", "saja", "juga", "serta", "atas", "oleh",
+    "tentang", "seputar", "mengenai", "terkait", "soal",
+    "bagaimana", "begini", "begitu", "lalu", "kemudian", "setelah",
+    "sebelum", "saat", "ketika", "tahun", "bulan", "tanggal",
 ]
 spell.word_frequency.load_words(kamus_dukcapil)
 
@@ -282,7 +293,7 @@ AMBIGUOUS_TOPICS = {
         "options": [
             "Ubah data karena pindah alamat",
             "Ubah data karena perubahan nama",
-            "Ubah data karena status perkawinan",
+            "Ubah data karena tambah anggota keluarga",
             "Ubah data karena perubahan pekerjaan atau pendidikan",
         ],
     },
