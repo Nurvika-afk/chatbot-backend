@@ -201,6 +201,12 @@ TOPIK_DILAYANI = [
     "reset password", "lupa password", "ubah email", "ubah nomor",
     "ubah data kk", "perubahan data kk", "perubahan biodata",
     "ubah kk", "perubahan kk", "ganti data kk", "biodata kk",
+    "pekerjaan", "pendidikan", "perubahan pekerjaan", "perubahan pendidikan",
+    "ganti pekerjaan", "ganti pendidikan", "ubah pekerjaan", "ubah pendidikan",
+    "perubahan nama", "ganti nama", "ubah nama", "salah nama",
+    "perubahan alamat", "ganti alamat", "ubah alamat",
+    "tambah anggota keluarga", "tambah anggota", "anggota keluarga baru",
+    "perubahan status", "ganti status", "ubah status",
 ]
 
 def is_topik_dilayani(teks: str) -> bool:
@@ -217,10 +223,19 @@ topik_keywords = {
     "kia": ["kia", "kartu identitas anak"],
     "kedatangan": ["datang", "kedatangan", "lapor datang"],
     "cerai": ["cerai", "akta perceraian", "perceraian"],
-    "biodata": ["ganti", "nama", "biodata", "salah nama", "perbaikan data","status", "perkawinan", "menikah", "cerai", "janda", "duda","pendidikan", "pekerjaan", "profesi", "ubah", "update", "kk"],
     "jam_operasional": ["jam", "buka", "tutup", "operasional", "kantor", "hari", "pelayanan"],
     "surat_pernyataan": ["rumah sendiri", "surat pernyataan rumah sendiri", "siapa", "membuat", "menandatangani","kontrak", "surat pernyataan kontrak rumah","numpang kk", "surat pernyataan numpang kk"],
     "si_d'nok": ["si d'nok", "ubah email", "ubah password", "ikd", "identitas kependudukan digital", "reset password", "lupa password", "ubah email", "ubah nomor"],
+    "perubahan_kk": [
+        "ubah data kk", "perubahan data kk", "perubahan biodata", "ubah kk",
+        "perubahan kk", "ganti data kk", "biodata kk",
+        "perubahan pekerjaan", "ganti pekerjaan", "ubah pekerjaan", "pekerjaan",
+        "perubahan pendidikan", "ganti pendidikan", "ubah pendidikan", "pendidikan",
+        "perubahan nama", "ganti nama", "ubah nama", "salah nama",
+        "perubahan alamat", "ganti alamat", "ubah alamat",
+        "tambah anggota keluarga", "tambah anggota", "anggota keluarga baru",
+        "perubahan status", "ganti status", "ubah status",
+    ],
 }
 
 def topik_dari_pertanyaan(teks: str) -> list:
@@ -294,7 +309,7 @@ AMBIGUOUS_TOPICS = {
         "options": [
             "Ubah data karena pindah alamat",
             "Ubah data karena perubahan nama",
-            "Ubah data karena status perkawinan",
+            "Ubah data karena tambah anggota keluarga",
             "Ubah data karena perubahan pekerjaan atau pendidikan",
         ],
     },
