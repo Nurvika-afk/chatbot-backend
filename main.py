@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from pydantic import BaseModel
+from typing import Optional, List
 import json, logging, re, os
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
@@ -59,6 +60,9 @@ kamus_dukcapil = [
     "syarat", "cara", "prosedur", "biaya", "daftar",
     "buat", "urus", "ganti", "ubah", "fotokopi",
     "rumah", "pernyataan", "sendiri",
+    # Perubahan data KK
+    "perubahan", "biodata", "data", "anggota", "kepala",
+    "alamat", "pekerjaan", "pendidikan", "status", "tambah",
 ]
 spell.word_frequency.load_words(kamus_dukcapil)
 
@@ -166,7 +170,7 @@ SIMILARITY_THRESHOLD = float(os.getenv("SIMILARITY_THRESHOLD", "0.45"))
 TOPIK_DILAYANI = [
     "ktp", "kartu tanda penduduk", "e-ktp",
     "kk", "kartu keluarga",
-    "akta kelahiran", "akta lahir", "kelahiran",
+    "akta", "akta kelahiran", "akta lahir", "kelahiran",
     "akta kematian", "kematian", "meninggal",
     "akta perkawinan", "nikah", "menikah", "perkawinan",
     "akta perceraian", "cerai", "perceraian",
@@ -183,7 +187,9 @@ TOPIK_DILAYANI = [
     "kontrak", "surat pernyataan kontrak rumah",
     "numpang kk", "surat pernyataan numpang kk",
     "si d'nok", "ikd", "identitas kependudukan digital",
-    "reset password", "lupa password", "ubah email", "ubah nomor"
+    "reset password", "lupa password", "ubah email", "ubah nomor",
+    "ubah data kk", "perubahan data kk", "perubahan biodata",
+    "ubah kk", "perubahan kk", "ganti data kk", "biodata kk",
 ]
 
 def is_topik_dilayani(teks: str) -> bool:
@@ -238,6 +244,68 @@ def get_best_index_for_topik(topik_user: list, similarities) -> int:
                     best_idx   = i
     return best_idx
 
+# ============================================================
+# AMBIGUOUS TOPIC HANDLER (Clarification Options)
+# ============================================================
+# Digunakan untuk menangani pertanyaan yang masih terlalu umum
+# sehingga bot perlu menawarkan beberapa pilihan spesifik
+# sebelum memberikan jawaban akhir.
+
+AMBIGUOUS_TOPICS = {
+    "akta": {
+        # Kata pemicu (jika ditemukan & tidak ada kata spesifik di bawah)
+        "trigger": ["akta"],
+        # Jika salah satu dari kata ini ada di pertanyaan, anggap SUDAH spesifik
+        "specific": [
+            "akta kelahiran", "akta lahir",
+            "akta kematian", "kematian", "meninggal",
+            "akta perkawinan", "akta nikah", "nikah", "menikah", "kawin",
+            "akta perceraian", "akta cerai", "cerai", "perceraian",
+        ],
+        "question": "Anda ingin bertanya tentang akta apa? Silakan pilih salah satu di bawah ini 👇",
+        "options": [
+            "Syarat akta kelahiran",
+            "Syarat akta kematian",
+            "Syarat akta perkawinan",
+            "Syarat akta perceraian",
+        ],
+    },
+    "ubah_kk": {
+        "trigger": [
+            "ubah data kk", "perubahan data kk", "ubah kk",
+            "perubahan kk", "ganti data kk", "perubahan biodata kk",
+            "ubah biodata kk", "ganti biodata kk", "perbaikan data kk",
+            "koreksi data kk",
+        ],
+        "specific": [],  # selalu tampilkan pilihan jika trigger cocok
+        "question": "Perubahan data KK apa yang Anda maksud? Silakan pilih salah satu di bawah ini 👇",
+        "options": [
+            "Ubah data karena pindah alamat",
+            "Ubah data karena perubahan nama",
+            "Ubah data karena tambah anggota keluarga",
+            "Ubah data karena perubahan pekerjaan atau pendidikan",
+        ],
+    },
+}
+
+def cek_topik_ambigu(raw_question: str):
+    """
+    Mengecek apakah pertanyaan user termasuk topik yang masih ambigu
+    (terlalu umum) sehingga perlu ditawarkan pilihan klarifikasi.
+    Mengembalikan dict konfigurasi topik jika ambigu, atau None jika tidak.
+    """
+    teks = raw_question.lower()
+    for key, cfg in AMBIGUOUS_TOPICS.items():
+        # Jika sudah ada kata spesifik, lewati (tidak ambigu)
+        if cfg["specific"] and any(s in teks for s in cfg["specific"]):
+            continue
+        # Jika ada kata pemicu generik, anggap ambigu
+        if any(t in teks for t in cfg["trigger"]):
+            logger.info(f"Topik ambigu terdeteksi: '{key}' dari pertanyaan '{raw_question}'")
+            return cfg
+    return None
+
+
 class ChatRequest(BaseModel):
     question: str = ""
     message: str = ""
@@ -246,6 +314,7 @@ class ChatResponse(BaseModel):
     answer: str
     reply: str
     confidence: float
+    options: Optional[List[str]] = None
 
 MULTI_THRESHOLD = 0.30
 
@@ -269,7 +338,17 @@ async def chat(request: ChatRequest):
             "Disdukcapil Kota Semarang seperti KTP, KK, Akta Kelahiran, "
             "Akta Kematian, Akta Perkawinan, dan layanan kependudukan lainnya."
         )
-        return ChatResponse(answer=fallback, reply=fallback, confidence=0.0)
+        return ChatResponse(answer=fallback, reply=fallback, confidence=0.0, options=None)
+
+    # ✅ Cek apakah topik masih ambigu / terlalu umum
+    ambigu = cek_topik_ambigu(raw_question)
+    if ambigu:
+        return ChatResponse(
+            answer=ambigu["question"],
+            reply=ambigu["question"],
+            confidence=1.0,
+            options=ambigu["options"],
+        )
 
     user_question = preprocess(raw_question)
     user_vector   = vectorizer.transform([user_question])
@@ -300,7 +379,7 @@ async def chat(request: ChatRequest):
             "Silakan hubungi Disdukcapil Kota Semarang secara langsung "
             "atau coba pertanyaan lain."
         )
-        return ChatResponse(answer=fallback, reply=fallback, confidence=best_score)
+        return ChatResponse(answer=fallback, reply=fallback, confidence=best_score, options=None)
 
     kata_ganda = ["dan", "serta", "juga", "sekaligus", "dengan", "atau"]
     ada_kata_ganda = any(f" {k} " in f" {raw_question.lower()} " for k in kata_ganda)
@@ -329,12 +408,13 @@ async def chat(request: ChatRequest):
                 "<br><hr style='border:1px dashed #e5e7eb; margin:10px 0;'>"
                 f"<b>📌 Topik 2:</b><br>{seen_answers[1]}"
             )
-            return ChatResponse(answer=combined, reply=combined, confidence=best_score)
+            return ChatResponse(answer=combined, reply=combined, confidence=best_score, options=None)
 
     return ChatResponse(
         answer=answers[best_index],
         reply=answers[best_index],
         confidence=best_score,
+        options=None,
     )
 
 @app.get("/health")
