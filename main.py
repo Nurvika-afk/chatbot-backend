@@ -74,6 +74,8 @@ kamus_dukcapil = [
     "tentang", "seputar", "mengenai", "terkait", "soal",
     "bagaimana", "begini", "begitu", "lalu", "kemudian", "setelah",
     "sebelum", "saat", "ketika", "tahun", "bulan", "tanggal",
+    "nama", "anak", "istri", "suami", "orangtua", "orang", "tua",
+    "pria", "wanita", "laki", "perempuan", "umur", "usia",
 ]
 spell.word_frequency.load_words(kamus_dukcapil)
 
@@ -309,7 +311,7 @@ AMBIGUOUS_TOPICS = {
         "options": [
             "Ubah data karena pindah alamat",
             "Ubah data karena perubahan nama",
-            "Ubah data karena perubahan status perkawinan",
+            "Ubah data karena tambah anggota keluarga",
             "Ubah data karena perubahan pekerjaan atau pendidikan",
         ],
     },
