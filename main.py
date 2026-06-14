@@ -76,6 +76,7 @@ kamus_dukcapil = [
     "sebelum", "saat", "ketika", "tahun", "bulan", "tanggal",
     "nama", "anak", "istri", "suami", "orangtua", "orang", "tua",
     "pria", "wanita", "laki", "perempuan", "umur", "usia",
+    "tanya", "bertanya", "pertanyaan", "informasi", "info",
 ]
 spell.word_frequency.load_words(kamus_dukcapil)
 
@@ -209,6 +210,7 @@ TOPIK_DILAYANI = [
     "perubahan alamat", "ganti alamat", "ubah alamat",
     "tambah anggota keluarga", "tambah anggota", "anggota keluarga baru",
     "perubahan status", "ganti status", "ubah status",
+    "status perkawinan", "status kawin", "status cerai", "status janda", "status duda",
 ]
 
 def is_topik_dilayani(teks: str) -> bool:
@@ -228,15 +230,25 @@ topik_keywords = {
     "jam_operasional": ["jam", "buka", "tutup", "operasional", "kantor", "hari", "pelayanan"],
     "surat_pernyataan": ["rumah sendiri", "surat pernyataan rumah sendiri", "siapa", "membuat", "menandatangani","kontrak", "surat pernyataan kontrak rumah","numpang kk", "surat pernyataan numpang kk"],
     "si_d'nok": ["si d'nok", "ubah email", "ubah password", "ikd", "identitas kependudukan digital", "reset password", "lupa password", "ubah email", "ubah nomor"],
-    "perubahan_kk": [
-        "ubah data kk", "perubahan data kk", "perubahan biodata", "ubah kk",
-        "perubahan kk", "ganti data kk", "biodata kk",
-        "perubahan pekerjaan", "ganti pekerjaan", "ubah pekerjaan", "pekerjaan",
-        "perubahan pendidikan", "ganti pendidikan", "ubah pendidikan", "pendidikan",
+    "biodata_nama": [
         "perubahan nama", "ganti nama", "ubah nama", "salah nama",
-        "perubahan alamat", "ganti alamat", "ubah alamat",
-        "tambah anggota keluarga", "tambah anggota", "anggota keluarga baru",
-        "perubahan status", "ganti status", "ubah status",
+        "perbaikan nama", "nama salah", "perbaikan data nama",
+    ],
+    "biodata_status_kawin": [
+        "perubahan status perkawinan", "ganti status perkawinan", "ubah status perkawinan",
+        "status kawin", "status cerai", "ubah status", "ganti status",
+        "perubahan status", "status janda", "status duda",
+    ],
+    "biodata_pendidikan_pekerjaan": [
+        "perubahan pendidikan", "ganti pendidikan", "ubah pendidikan", "pendidikan",
+        "perubahan pekerjaan", "ganti pekerjaan", "ubah pekerjaan", "pekerjaan",
+        "update pendidikan", "update pekerjaan", "ubah data karena perubahan pendidikan atau pekerjaan",
+    ],
+    "biodata_pindah_alamat": [
+        "pindah alamat", "ubah data karena pindah alamat", "perubahan alamat",
+        "ganti alamat", "ubah alamat", "pindah domisili", "pindah kelurahan",
+        "pindah kecamatan", "pindah dalam kota", "pindah antar kelurahan",
+        "pindah keluar", "surat pindah", "domisili",
     ],
 }
 
@@ -309,10 +321,10 @@ AMBIGUOUS_TOPICS = {
         "specific": [],  # selalu tampilkan pilihan jika trigger cocok
         "question": "Perubahan data KK apa yang Anda maksud? Silakan pilih salah satu di bawah ini 👇",
         "options": [
-            "Ubah data karena pindah alamat",
             "Ubah data karena perubahan nama",
-            "Ubah data karena tambah anggota keluarga",
-            "Ubah data karena perubahan pekerjaan atau pendidikan",
+            "Ubah data karena perubahan status perkawinan",
+            "Ubah data karena perubahan pendidikan atau pekerjaan",
+            "Ubah data karena pindah alamat",
         ],
     },
 }
