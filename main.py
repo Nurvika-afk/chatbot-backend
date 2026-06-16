@@ -231,7 +231,7 @@ TOPIK_DILARANG = [
     "ijazah", "skl", "surat kelulusan", "rapor",
     "sekolah", "kampus", "universitas",
     # Imigrasi / dokumen perjalanan
-    "paspor", "visa", "imigrasi",
+    "paspor", "visa", "imigrasi", "kitas", "kitap",
     # Bantuan sosial
     "pkh", "blt", "bansos", "bantuan sosial", "kartu prakerja",
     # Perizinan usaha / bangunan
@@ -391,10 +391,9 @@ async def chat(request: ChatRequest):
     if len(raw_question) > 500:
         raise HTTPException(status_code=400, detail="Pertanyaan terlalu panjang.")
 
-    # ✅ Koreksi typo sebelum diproses
-    raw_question = koreksi_typo(raw_question)
-
     # ✅ Tolak topik yang jelas bukan layanan Disdukcapil (SKCK, BPJS, SIM, dst.)
+    # PENTING: dicek dari teks ASLI user sebelum koreksi typo,
+    # agar singkatan seperti "skck" tidak diubah menjadi kata lain oleh SpellChecker.
     if is_topik_dilarang(raw_question):
         fallback = (
             "Maaf, pertanyaan Anda berkaitan dengan layanan di luar kewenangan "
@@ -407,11 +406,14 @@ async def chat(request: ChatRequest):
             "<li>💍 Akta Perkawinan &amp; Perceraian</li>"
             "<li>⚰️ Akta Kematian</li>"
             "<li>🏠 Pindah Domisili &amp; Surat Kependudukan</li>"
-            "<li>📱 Si D'nOK dan Identitas Kependudukan Digital (IKD)</li>"
+            "<li>📱 Identitas Kependudukan Digital (IKD)</li>"
             "</ul>"
             "Untuk layanan lain, silakan hubungi instansi terkait. 🙏"
         )
         return ChatResponse(answer=fallback, reply=fallback, confidence=0.0, options=None)
+
+    # ✅ Koreksi typo — dilakukan SETELAH filter topik dilarang
+    raw_question = koreksi_typo(raw_question)
 
     # ✅ Cek apakah topik termasuk layanan Disdukcapil
     if not is_topik_dilayani(raw_question):
