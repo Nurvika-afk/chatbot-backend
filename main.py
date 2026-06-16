@@ -63,8 +63,7 @@ kamus_dukcapil = [
     # Perubahan data KK
     "perubahan", "biodata", "data", "anggota", "kepala",
     "alamat", "pekerjaan", "pendidikan", "status", "tambah",
-    # Kata sambung / stopwords umum (agar tidak salah dikoreksi
-    # menjadi kata domain seperti "akta", contoh: "atau" -> "akta")
+    # Kata sambung / stopwords umum
     "atau", "dan", "dengan", "yang", "untuk", "dari", "pada",
     "akan", "adalah", "karena", "agar", "supaya", "jika", "kalau",
     "saya", "anda", "kami", "kita", "mereka", "ingin", "mau",
@@ -181,6 +180,7 @@ logger.info("✅ TF-IDF siap.")
 
 SIMILARITY_THRESHOLD = float(os.getenv("SIMILARITY_THRESHOLD", "0.45"))
 
+# ── Daftar topik yang DILAYANI Disdukcapil ──────────────────
 TOPIK_DILAYANI = [
     "ktp", "kartu tanda penduduk", "e-ktp",
     "kk", "kartu keluarga",
@@ -212,6 +212,41 @@ TOPIK_DILAYANI = [
     "perubahan status", "ganti status", "ubah status",
     "status perkawinan", "status kawin", "status cerai", "status janda", "status duda",
 ]
+
+# ── Daftar topik yang BUKAN layanan Disdukcapil ─────────────
+# Singkatan / kata ini langsung ditolak sebelum masuk TF-IDF
+TOPIK_DILARANG = [
+    # Kepolisian / hukum
+    "skck", "surat catatan kepolisian", "tilang",
+    "sim", "stnk", "bpkb",
+    "polisi", "polsek", "polres", "laporan polisi",
+    # Kesehatan / BPJS
+    "bpjs", "jkn", "puskesmas", "rumah sakit",
+    "klinik", "vaksin", "imunisasi",
+    "kartu sehat", "kis", "faskes",
+    # Pajak / keuangan
+    "npwp", "pajak", "spt", "bphtb", "pbb",
+    "bank", "rekening", "atm", "transfer",
+    # Pendidikan / sekolah
+    "ijazah", "skl", "surat kelulusan", "rapor",
+    "sekolah", "kampus", "universitas",
+    # Imigrasi / dokumen perjalanan
+    "paspor", "visa", "imigrasi",
+    # Bantuan sosial
+    "pkh", "blt", "bansos", "bantuan sosial", "kartu prakerja",
+    # Perizinan usaha / bangunan
+    "bpom", "sertifikat halal", "izin usaha", "siup", "nib",
+    "imb", "imt", "izin mendirikan bangunan",
+    # Pertanahan
+    "akta tanah", "sertifikat tanah", "bpn", "shm",
+    # Lain-lain
+    "kartu pos",
+]
+
+def is_topik_dilarang(teks: str) -> bool:
+    """Cek apakah pertanyaan mengandung topik yang bukan layanan Disdukcapil."""
+    teks = teks.lower()
+    return any(topik in teks for topik in TOPIK_DILARANG)
 
 def is_topik_dilayani(teks: str) -> bool:
     teks = teks.lower()
@@ -288,15 +323,9 @@ def get_best_index_for_topik(topik_user: list, similarities) -> int:
 # ============================================================
 # AMBIGUOUS TOPIC HANDLER (Clarification Options)
 # ============================================================
-# Digunakan untuk menangani pertanyaan yang masih terlalu umum
-# sehingga bot perlu menawarkan beberapa pilihan spesifik
-# sebelum memberikan jawaban akhir.
-
 AMBIGUOUS_TOPICS = {
     "akta": {
-        # Kata pemicu (jika ditemukan & tidak ada kata spesifik di bawah)
         "trigger": ["akta"],
-        # Jika salah satu dari kata ini ada di pertanyaan, anggap SUDAH spesifik
         "specific": [
             "akta kelahiran", "akta lahir",
             "akta kematian", "kematian", "meninggal",
@@ -318,7 +347,7 @@ AMBIGUOUS_TOPICS = {
             "ubah biodata kk", "ganti biodata kk", "perbaikan data kk",
             "koreksi data kk",
         ],
-        "specific": [],  # selalu tampilkan pilihan jika trigger cocok
+        "specific": [],
         "question": "Perubahan data KK apa yang Anda maksud? Silakan pilih salah satu di bawah ini 👇",
         "options": [
             "Ubah data karena perubahan nama",
@@ -330,17 +359,10 @@ AMBIGUOUS_TOPICS = {
 }
 
 def cek_topik_ambigu(raw_question: str):
-    """
-    Mengecek apakah pertanyaan user termasuk topik yang masih ambigu
-    (terlalu umum) sehingga perlu ditawarkan pilihan klarifikasi.
-    Mengembalikan dict konfigurasi topik jika ambigu, atau None jika tidak.
-    """
     teks = raw_question.lower()
     for key, cfg in AMBIGUOUS_TOPICS.items():
-        # Jika sudah ada kata spesifik, lewati (tidak ambigu)
         if cfg["specific"] and any(s in teks for s in cfg["specific"]):
             continue
-        # Jika ada kata pemicu generik, anggap ambigu
         if any(t in teks for t in cfg["trigger"]):
             logger.info(f"Topik ambigu terdeteksi: '{key}' dari pertanyaan '{raw_question}'")
             return cfg
@@ -372,6 +394,26 @@ async def chat(request: ChatRequest):
     # ✅ Koreksi typo sebelum diproses
     raw_question = koreksi_typo(raw_question)
 
+    # ✅ Tolak topik yang jelas bukan layanan Disdukcapil (SKCK, BPJS, SIM, dst.)
+    if is_topik_dilarang(raw_question):
+        fallback = (
+            "Maaf, pertanyaan Anda berkaitan dengan layanan di luar kewenangan "
+            "Disdukcapil Kota Semarang. 🙏<br><br>"
+            "Saya hanya melayani informasi seputar:<br>"
+            "<ul>"
+            "<li>📋 KTP / e-KTP</li>"
+            "<li>📄 Kartu Keluarga (KK)</li>"
+            "<li>👶 Akta Kelahiran</li>"
+            "<li>💍 Akta Perkawinan &amp; Perceraian</li>"
+            "<li>⚰️ Akta Kematian</li>"
+            "<li>🏠 Pindah Domisili &amp; Surat Kependudukan</li>"
+            "<li>📱 Si D'nOK dan Identitas Kependudukan Digital (IKD)</li>"
+            "</ul>"
+            "Untuk layanan lain, silakan hubungi instansi terkait. 🙏"
+        )
+        return ChatResponse(answer=fallback, reply=fallback, confidence=0.0, options=None)
+
+    # ✅ Cek apakah topik termasuk layanan Disdukcapil
     if not is_topik_dilayani(raw_question):
         fallback = (
             "Maaf, pertanyaan Anda di luar layanan yang tersedia. 🙏<br>"
