@@ -406,7 +406,7 @@ async def chat(request: ChatRequest):
             "<li>💍 Akta Perkawinan &amp; Perceraian</li>"
             "<li>⚰️ Akta Kematian</li>"
             "<li>🏠 Pindah Domisili &amp; Surat Kependudukan</li>"
-            "<li>📱 Identitas Kependudukan Digital (IKD)</li>"
+            "<li>📱 Si D'nOK & Identitas Kependudukan Digital (IKD)</li>"
             "</ul>"
             "Untuk layanan lain, silakan hubungi instansi terkait. 🙏"
         )
